@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)file:///home/cipl1168/Downloads/profile/hema_profile.html -->
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hema Chandran SS - Software Engineer</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #5a2626 0%, #4ecdc4 100%);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .profile-header {
+        text-align: center;
+        margin-bottom: 50px;
+        animation: fadeInDown 1s ease-out;
+      }
+
+      .profile-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: linear-gradient(45deg, #6c5ce7, #fd79a8);
+        margin: 0 auto 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 60px;
+        color: white;
+        font-weight: bold;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        animation: pulse 2s infinite;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .profile-image:hover {
+        transform: scale(1.05);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+      }
+
+      .profile-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+
+      .profile-image .initials {
+        display: block;
+      }
+
+      .profile-image.has-image .initials {
+        display: none;
+      }
+
+      .upload-hint {
+        position: absolute;
+        bottom: -5px;
+        right: -5px;
+        background: #fd79a8;
+        color: white;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .profile-image:hover .upload-hint {
+        opacity: 1;
+      }
+
+      .name {
+        font-size: 3rem;
+        color: white;
+        margin-bottom: 10px;
+        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        animation: glow 3s ease-in-out infinite alternate;
+      }
+
+      .title {
+        font-size: 1.5rem;
+        color: #f8f9fa;
+        margin-bottom: 20px;
+        opacity: 0.9;
+      }
+
+      .contact-info {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+
+      .contact-item {
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 25px;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .contact-item:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .main-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 50px;
+      }
+
+      .section {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        border-radius: 20px;
+        padding: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        animation: fadeInUp 1s ease-out;
+        animation-fill-mode: both;
+        transition: all 0.3s ease;
+      }
+
+      .section:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      .section h2 {
+        color: #fd79a8;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        position: relative;
+        animation: slideInLeft 1s ease-out;
+      }
+
+      .section h2::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: linear-gradient(90deg, #fd79a8, #6c5ce7);
+        border-radius: 2px;
+        animation: expandWidth 1s ease-out 0.5s both;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+      }
+
+      .skill-item {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 15px;
+        border-radius: 15px;
+        text-align: center;
+        color: white;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        animation: popIn 0.5s ease-out;
+        animation-fill-mode: both;
+      }
+
+      .skill-item:hover {
+        transform: scale(1.05);
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .experience-item {
+        margin-bottom: 30px;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        border-left: 4px solid #6c5ce7;
+        animation: slideInRight 1s ease-out;
+        animation-fill-mode: both;
+      }
+
+      .experience-item h3 {
+        color: #fd79a8;
+        font-size: 1.3rem;
+        margin-bottom: 5px;
+      }
+
+      .experience-item .company {
+        color: #6c5ce7;
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      .experience-item .duration {
+        color: rgba(255, 255, 255, 0.7);
+        font-style: italic;
+        margin-bottom: 10px;
+      }
+
+      .experience-item .description {
+        color: white;
+        line-height: 1.6;
+      }
+
+      .projects-grid {
+        display: grid;
+        gap: 20px;
+      }
+
+      .project-card {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+        animation: fadeIn 1s ease-out;
+        animation-fill-mode: both;
+      }
+
+      .project-card:hover {
+        transform: translateX(10px);
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .project-card h3 {
+        color: #fd79a8;
+        margin-bottom: 15px;
+        font-size: 1.2rem;
+      }
+
+      .project-card ul {
+        list-style: none;
+        color: white;
+      }
+
+      .project-card li {
+        margin-bottom: 8px;
+        padding-left: 20px;
+        position: relative;
+      }
+
+      .project-card li::before {
+        content: "▶";
+        position: absolute;
+        left: 0;
+        color: #6c5ce7;
+        animation: blink 2s infinite;
+      }
+
+      .hobbies-languages {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-top: 40px;
+      }
+
+      .hobby-item,
+      .language-item {
+        color: white;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        animation: fadeInUp 1s ease-out;
+        animation-fill-mode: both;
+      }
+
+      .floating-elements {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .floating-circle {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .floating-circle:nth-child(1) {
+        width: 100px;
+        height: 100px;
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+
+      .floating-circle:nth-child(2) {
+        width: 150px;
+        height: 150px;
+        top: 60%;
+        right: 10%;
+        animation-delay: 2s;
+      }
+
+      .floating-circle:nth-child(3) {
+        width: 80px;
+        height: 80px;
+        bottom: 20%;
+        left: 20%;
+        animation-delay: 4s;
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      @keyframes glow {
+        from {
+          text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        to {
+          text-shadow: 0 4px 20px rgba(255, 255, 255, 0.5);
+        }
+      }
+
+      @keyframes expandWidth {
+        from {
+          width: 0;
+        }
+        to {
+          width: 50px;
+        }
+      }
+
+      @keyframes popIn {
+        from {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      @keyframes blink {
+        0%,
+        50% {
+          opacity: 1;
+        }
+        51%,
+        100% {
+          opacity: 0.5;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .main-content {
+          grid-template-columns: 1fr;
+        }
+
+        .hobbies-languages {
+          grid-template-columns: 1fr;
+        }
+
+        .name {
+          font-size: 2rem;
+        }
+
+        .contact-info {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+
+      .section:nth-child(1) {
+        animation-delay: 0.2s;
+      }
+      .section:nth-child(2) {
+        animation-delay: 0.4s;
+      }
+      .section:nth-child(3) {
+        animation-delay: 0.6s;
+      }
+      .section:nth-child(4) {
+        animation-delay: 0.8s;
+      }
+
+      .skill-item:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .skill-item:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .skill-item:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .skill-item:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+      .skill-item:nth-child(5) {
+        animation-delay: 0.5s;
+      }
+      .skill-item:nth-child(6) {
+        animation-delay: 0.6s;
+      }
+      .skill-item:nth-child(7) {
+        animation-delay: 0.7s;
+      }
+      .skill-item:nth-child(8) {
+        animation-delay: 0.8s;
+      }
+      .skill-item:nth-child(9) {
+        animation-delay: 0.9s;
+      }
+
+      .experience-item:nth-child(1) {
+        animation-delay: 0.3s;
+      }
+      .experience-item:nth-child(2) {
+        animation-delay: 0.6s;
+      }
+
+      .project-card:nth-child(1) {
+        animation-delay: 0.2s;
+      }
+      .project-card:nth-child(2) {
+        animation-delay: 0.4s;
+      }
+      .project-card:nth-child(3) {
+        animation-delay: 0.6s;
+      }
+      .tech-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 15px;
+      }
+
+      .tech-tag {
+        background: rgba(93, 83, 168, 0.2);
+        color: #d2e75c;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        border: 1px solid rgba(108, 92, 231, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .tech-tag:hover {
+        background: rgba(108, 92, 231, 0.3);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(108, 92, 231, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="floating-elements">
+      <div class="floating-circle"></div>
+      <div class="floating-circle"></div>
+      <div class="floating-circle"></div>
+    </div>
+
+    <div class="container">
+      <header class="profile-header">
+        <div class="profile-image" id="profileImage">
+          <img src="./images/profile-image.jpeg" />
+        </div>
+        <h1 class="name">Hema Chandran SS</h1>
+        <p class="title">
+          Software Engineer, BE (CSE) • 5+ Years of Experience in ROR
+        </p>
+        <div class="contact-info">
+          <a href="http://www.linkedin.com/in/hemachandran-ss-1489021ab" class="contact-item" target="_blank">🔗 LinkedIn</a>
+          <a href="mailto:hchandranss@gmail.com" class="contact-item"
+            >📧 hchandranss@gmail.com</a
+          >
+          <a href="tel:+918939022639" class="contact-item"
+            >📞 (+91) 8939022639</a
+          >
+          <span class="contact-item">📍Tamil Nadu - 631051</span>
+        </div>
+      </header>
+
+      <div class="main-content">
+        <section class="section">
+          <h2>Technical Skills</h2>
+          <div class="skills-grid">
+            <div class="skill-item">Ruby on Rails</div>
+            <div class="skill-item">Git</div>
+            <div class="skill-item">Gitbub</div>
+            <div class="skill-item">Nginx</div>
+            <div class="skill-item">MySQL</div>
+            <div class="skill-item">PostgreSQL</div>
+            <div class="skill-item">REST API</div>
+            <div class="skill-item">Icinga</div>
+            <div class="skill-item">Docker</div>
+            <div class="skill-item">Kubernetes</div>
+            <div class="skill-item">AWS [EC2, S3, EBS, RDS]</div>
+            <div class="skill-item">GKE</div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Experience</h2>
+          <div class="experience-item">
+            <h3>Software Engineer (Rails Backend Developer)</h3>
+            <div class="company">
+              <a href="https://colaninfotech.com/" target="_blank"
+                >Colan Infotech Pvt Ltd, Chennai</a
+              >
+            </div>
+            <div class="duration">May 2022 - Present</div>
+            <div class="description">
+              Software Developer specialized in Rails Backend Development with
+              expertise in building scalable web applications and API
+              development.
+            </div>
+          </div>
+          <div class="experience-item">
+            <h3>Software Engineer (Rails Backend Developer)</h3>
+            <div class="company">
+              <a href="https://colaninfotech.com/" target="_blank"
+                >Byteally Softwares Pvt Ltd, Chennai</a
+              >
+            </div>
+            <div class="duration">Oct 2017 - Feb 2020</div>
+            <div class="description">
+              Software Developer specialized in Rails Web Development, Cloud
+              Architecture and Containerization with focus on modern development
+              practices.
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section class="section">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card">
+            <h3>Healthcare Web Application and API Support for Frontend</h3>
+            <div class="tech-stack">
+              <span class="tech-tag">Ruby on Rails</span>
+              <span class="tech-tag">REST API using Rails</span>
+              <span class="tech-tag"
+                >Interactors, Policies, Presenters Pattern</span
+              >
+              <span class="tech-tag">Solid Principles</span>
+              <span class="tech-tag">Rspec</span>
+              <span class="tech-tag">PostgreSQL</span>
+              <span class="tech-tag">Sidekiq</span>
+              <span class="tech-tag">Devise</span>
+              <span class="tech-tag">Pundit</span>
+              <span class="tech-tag">Administrate</span>
+            </div>
+            <ul>
+              <li>
+                Developed comprehensive REST API solutions for mobile frontend
+              </li>
+              <li>
+                Integrated Electronic Health Records (EHR) to the custom Rails
+                application using HTTParty
+              </li>
+              <li>Implemented PostgreSQL database design solutions</li>
+            </ul>
+          </div>
+          <div class="project-card">
+            <h3>HR Web Application</h3>
+            <div class="tech-stack">
+              <span class="tech-tag">Ruby on Rails</span>
+              <span class="tech-tag">REST API using Rails</span>
+              <span class="tech-tag">Model View Controller(MVC) Pattern</span>
+              <span class="tech-tag">MySQL</span>
+              <span class="tech-tag">Docker</span>
+              <span class="tech-tag"
+                >AWS (EC2, S3, Load Balancer, IAM, RDS)</span
+              >
+              <span class="tech-tag">Query Optimization</span>
+            </div>
+            <ul>
+              <li>Built robust REST API architecture</li>
+              <li>Performed advanced query optimization</li>
+              <li>Implemented web application dockerization</li>
+              <li>Managed MySQL database administration in AWS</li>
+            </ul>
+          </div>
+          <div class="project-card">
+            <h3>Logistics and Supply Chain Project</h3>
+            <div class="tech-stack">
+              <span class="tech-tag">Haskell</span>
+              <span class="tech-tag">Icinga (Network Monitoring Tool)</span>
+              <span class="tech-tag">Supply Chain Management</span>
+            </div>
+            <ul>
+              <li>Implemented network monitoring solutions using Icinga</li>
+              <li>Built Business Process Modelling using Icinga</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <div class="hobbies-languages">
+        <section class="section">
+          <h2>Core Skills</h2>
+          <div class="hobby-item">💬 Communication</div>
+          <div class="hobby-item">🧩 Problem Solving</div>
+          <div class="hobby-item">🤝 Team Player</div>
+        </section>
+
+        <section class="section">
+          <h2>Languages</h2>
+          <div class="language-item">
+            <strong>Speaking:</strong> English, Tamil, Telugu
+          </div>
+          <div class="language-item">
+            <strong>Reading:</strong> English, Tamil
+          </div>
+          <div class="language-item">
+            <strong>Writing:</strong> English, Tamil
+          </div>
+        </section>
+      </div>
+      <div class="hobbies-languages">
+        <section class="section">
+          <h2>Hobbies &amp; Interests</h2>
+          <div class="hobby-item">📰 Reading Newspapers</div>
+          <div class="hobby-item">🎵 Playing Harmonica</div>
+          <div class="hobby-item">🎧 Listening to Music</div>
+        </section>
+        <section class="section">
+            <h2>Magazine Reader</h2>
+            <div class="hobby-item">📖 Sportstar</div>
+            <div class="hobby-item">📘 India today</div>
+            <div class="hobby-item">🗞️ Dalal Street Investment Journal</div>
+          </section>
+      </div>
+    </div>
+
+    <script>
+      const profileImage = document.getElementById("profileImage");
+      const imageInput = document.getElementById("imageInput");
+
+      profileImage.addEventListener("click", () => {
+        imageInput.click();
+      });
+
+      imageInput.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const img = document.createElement("img");
+            img.src = e.target.result;
+            img.alt = "Profile Picture";
+
+            // Remove existing image if any
+            const existingImg = profileImage.querySelector("img");
+            if (existingImg) {
+              existingImg.remove();
+            }
+
+            profileImage.appendChild(img);
+            profileImage.classList.add("has-image");
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    </script>
+  </body>
+</html>
