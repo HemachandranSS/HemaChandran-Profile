@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Journey - Certificates & Achievements</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #fd79a8;
+            --accent: #00cec9;
+            --dark-bg: #0f0f1a;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--dark-bg);
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(108, 92, 231, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(253, 121, 168, 0.2) 0%, transparent 40%);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Floating Background Elements */
+        .bg-shape {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            background: rgba(108, 92, 231, 0.15);
+            top: -100px;
+            left: -100px;
+        }
+
+        .shape-2 {
+            width: 300px;
+            height: 300px;
+            background: rgba(253, 121, 168, 0.15);
+            bottom: -50px;
+            right: -50px;
+            animation-delay: -5s;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #a5b1c2 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            animation: slideDown 1s ease-out;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            animation: fadeIn 1s ease-out 0.5s backwards;
+        }
+
+        /* Navigation */
+        .nav-back {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            padding: 12px 24px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-back:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        /* Timeline/Sections */
+        .timeline-section {
+            margin-bottom: 100px;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding-left: 20px;
+            border-left: 5px solid var(--primary);
+        }
+
+        .section-title span {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Grid Layout */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .cert-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.3);
+            z-index: 10;
+        }
+
+        .cert-image-container {
+            height: 200px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            background: #2d3436;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cert-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .cert-card:hover .cert-image-container img {
+            transform: scale(1.1);
+        }
+
+        .cert-placeholder {
+            font-size: 3rem;
+            opacity: 0.3;
+        }
+
+        .cert-info {
+            padding: 20px;
+        }
+
+        .cert-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .cert-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .cert-date {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 5px 12px;
+            background: rgba(108, 92, 231, 0.2);
+            color: #a29bfe;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Category Specific Styles */
+        .childhood .section-title {
+            border-color: #00cec9;
+        }
+
+        .childhood .section-title span {
+            background: linear-gradient(90deg, #00cec9, #0984e3);
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+
+        .childhood .cert-date {
+            background: rgba(0, 206, 201, 0.2);
+            color: #81ecec;
+        }
+
+        .college .section-title {
+            border-color: #fd79a8;
+        }
+
+        .college .section-title span {
+            background: linear-gradient(90deg, #fd79a8, #e84393);
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+
+        .college .cert-date {
+            background: rgba(253, 121, 168, 0.2);
+            color: #ff7675;
+        }
+
+        .work .section-title {
+            border-color: #6c5ce7;
+        }
+
+        .work .section-title span {
+            background: linear-gradient(90deg, #6c5ce7, #a29bfe);
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+
+        .work .cert-date {
+            background: rgba(108, 92, 231, 0.2);
+            color: #a29bfe;
+        }
+
+
+        /* Animations */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(20px, -20px);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .nav-back {
+                top: 20px;
+                left: 20px;
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+
+    <a href="index.html" class="nav-back">
+        ← Back to Profile
+    </a>
+
+    <div class="container">
+        <header>
+            <h1>My Journey</h1>
+            <p class="subtitle">A collection of milestones, achievements, and memories from childhood to my professional
+                career.</p>
+        </header>
+
+        <!-- Childhood Section -->
+        <section class="timeline-section childhood">
+            <h2 class="section-title"><span>School Achievements</span></h2>
+            <div class="cert-grid">
+                <!-- Placeholder Item 1 -->
+                <div class="cert-card">
+                    <div class="cert-image-container">
+                        <img src="images/certificates/1st_standard.png" alt="1st standard certificate" />
+                    </div>
+                    <div class="cert-info">
+                        <h3 class="cert-title">Educational Merit</h3>
+                        <p class="cert-desc">secured first place in education</p>
+                        <span class="cert-date">2001</span>
+                    </div>
+                </div>
+                <!-- Placeholder Item 2 -->
+                <div class="cert-card">
+                    <div class="cert-image-container">
+                        <img src="images/certificates/2nd_standard.jpg" alt="2nd standard certificate" />
+                    </div>
+                    <div class="cert-info">
+                        <h3 class="cert-title">Singing Competition</h3>
+                        <p class="cert-desc">Secured second place in Singing competition</p>
+                        <span class="cert-date">2002</span>
+                    </div>
+                </div>
+                <!-- Placeholder Item 3 -->
+                <div class="cert-card">
+                    <div class="cert-image-container">
+                        <img src="images/certificates/3rd_standard.png" alt="3rd standard certificate" />
+                    </div>
+                    <div class="cert-info">
+                        <h3 class="cert-title">Oratorical Competition</h3>
+                        <p class="cert-desc">Secured second place in Oratorical competition</p>
+                        <span class="cert-date">2003</span>
+                    </div>
+                </div>
+                <!-- Placeholder Item 4 -->
+                <div class="cert-card">
+                    <div class="cert-image-container">
+                        <img src="images/certificates/4th_standard.png" alt="4th standard certificate" />
+                    </div>
+                    <div class="cert-info">
+                        <h3 class="cert-title">Oratorical Competition</h3>
+                        <p class="cert-desc">Secured second place in Oratorical competition</p>
+                        <span class="cert-date">2004</span>
+                    </div>
+                </div>
+                <!-- Placeholder Item 5 -->
+                <div class="cert-card">
+                    <div class="cert-image-container">
+                        <img src="images/certificates/5th_standard.png" alt="5th standard certificate" />
+                    </div>
+                    <div class="cert-info">
+                        <h3 class="cert-title">Oratorical Competition</h3>
+                        <p class="cert-desc">Secured second place in Oratorical competition</p>
+                        <span class="cert-date">2005</span>
+                    </div>
+                </div>
+                <!-- Placeholder Item 6 -->
+                <div class="cert-card">
+                    <div class="cert-image-container">
+                        <img src="images/certificates/6th_standard.png" alt="6th standard certificate" />
+                    </div>
+                    <div class="cert-info">
+                        <h3 class="cert-title">Hindi Examination</h3>
+                        <p class="cert-desc">Qualified in Fundamental Hindi</p>
+                        <span class="cert-date">2006</span>
+                    </div>
+                </div>
+                <!-- Placeholder Item 7 -->
+                <div class="cert-card">
+                    <div class="cert-image-container">
+                        <img src="images/certificates/7th_standard.png" alt="7th standard certificate" />
+                    </div>
+                    <div class="cert-info">
+                        <h3 class="cert-title">Intraschool Sports Meet</h3>
+                        <p class="cert-desc">Winner in Kabaddi Sport</p>
+                        <span class="cert-date">2007</span>
+                    </div>
+                </div>
+                <!-- Placeholder Item 8 -->
+                <div class="cert-card">
+                    <div class="cert-image-container">
+                        <img src="images/certificates/8th_standard.png" alt="8th standard certificate" />
+                    </div>
+                    <div class="cert-info">
+                        <h3 class="cert-title">Intraschool Sports Meet</h3>
+                        <p class="cert-desc">Runner in Volley Ball Game</p>
+                        <span class="cert-date">2008</span>
+                    </div>
+                </div>
+                <!-- Placeholder Item 9 -->
+                <div class="cert-card">
+                    <div class="cert-image-container">
+                        <img src="images/certificates/8th_standard01.png"
+                            alt="8th standard best tamil student certificate" />
+                    </div>
+                    <div class="cert-info">
+                        <h3 class="cert-title">Tamil Examination</h3>
+                        <p class="cert-desc">Qualified as Best Tamil Student</p>
+                        <span class="cert-date">2008</span>
+                    </div>
+                </div>
+                <!-- Placeholder Item 10 -->
+                <div class="cert-card">
+                    <div class="cert-image-container">
+                        <img src="images/certificates/9th_standard.png" alt="9th standard certificate" />
+                    </div>
+                    <div class="cert-info">
+                        <h3 class="cert-title">Intraschool Talent Hunt Examination</h3>
+                        <p class="cert-desc">Secured Third in Talent Hunt Examination</p>
+                        <span class="cert-date">2009</span>
+                    </div>
+                </div>
+                <!-- Placeholder Item 11 -->
+                <div class="cert-card">
+                    <div class="cert-image-container">
+                        <img src="images/certificates/9th_standard01.png" alt="9th standard certificate" />
+                    </div>
+                    <div class="cert-info">
+                        <h3 class="cert-title">Interschool Talent Hunt Examination</h3>
+                        <p class="cert-desc">Secured Third in District Level Talent Hunt Examination</p>
+                        <span class="cert-date">2009</span>
+                    </div>
+                </div>
+                <!-- Placeholder Item 12 -->
+                <div class="cert-card">
+                    <div class="cert-image-container">
+                        <img src="images/certificates/10th_standard.png" alt="10th standard certificate" />
+                    </div>
+                    <div class="cert-info">
+                        <h3 class="cert-title">Tenth Standard Board Examination</h3>
+                        <p class="cert-desc">Secured > 80% in Tenth Standard Board Examination</p>
+                        <span class="cert-date">2010</span>
+                    </div>
+                </div>
+                <!-- Placeholder Item 13 -->
+                <div class="cert-card">
+                    <div class="cert-image-container">
+                        <img src="images/certificates/11th_standard.png" alt="11th standard certificate" />
+                    </div>
+                    <div class="cert-info">
+                        <h3 class="cert-title">AIDS Awareness Intraschool Competition</h3>
+                        <p class="cert-desc">Secured 1st Place in AIDS Awareness Intraschool Competition</p>
+                        <span class="cert-date">2011</span>
+                    </div>
+                </div>
+                <!-- Placeholder Item 14 -->
+                <div class="cert-card">
+                    <div class="cert-image-container">
+                        <img src="images/certificates/11th_standard01.png" alt="11th standard certificate" />
+                    </div>
+                    <div class="cert-info">
+                        <h3 class="cert-title">Interschool Tennis Ball Cricket Championship</h3>
+                        <p class="cert-desc">Secured Runners Up in Interschool Tennis Ball Cricket Championship</p>
+                        <span class="cert-date">2011</span>
+                    </div>
+                </div>
+                <!-- Placeholder Item 15 -->
+                <div class="cert-card">
+                    <div class="cert-image-container">
+                        <img src="images/certificates/11th_standard02.png" alt="12th standard certificate" />
+                    </div>
+                    <div class="cert-info">
+                        <h3 class="cert-title">Interschool Tennis Ball Cricket Championship</h3>
+                        <p class="cert-desc">Secured 4th Place in Interschool Tennis Ball Cricket Championship</p>
+                        <span class="cert-date">2011</span>
+                    </div>
+                </div>
+                <!-- Placeholder Item 16 -->
+                <div class="cert-card">
+                    <div class="cert-image-container">
+                        <img src="images/certificates/11th_standard03.png" alt="11th standard certificate" />
+                    </div>
+                    <div class="cert-info">
+                        <h3 class="cert-title">Interschool Tennis Ball Cricket Championship</h3>
+                        <p class="cert-desc">Secured Runners Up in Interschool Tennis Ball Cricket Championship</p>
+                        <span class="cert-date">2011</span>
+                    </div>
+                </div>
+                <!-- Placeholder Item 17 -->
+                <div class="cert-card">
+                    <div class="cert-image-container">
+                        <img src="images/certificates/11th_standard04.png" alt="11th standard certificate" />
+                    </div>
+                    <div class="cert-info">
+                        <h3 class="cert-title">Block Level Sports Championship</h3>
+                        <p class="cert-desc">Secured Second Place in Shotput</p>
+                        <span class="cert-date">2011</span>
+                    </div>
+                </div>
+                <!-- Placeholder Item 18 -->
+                <div class="cert-card">
+                    <div class="cert-image-container">
+                        <img src="images/certificates/12th_standard.png" alt="12th standard certificate" />
+                    </div>
+                    <div class="cert-info">
+                        <h3 class="cert-title">Twelfth Standard Board Examination</h3>
+                        <p class="cert-desc">Secured >80% in Twelfth Standard Board Examination</p>
+                        <span class="cert-date">2012</span>
+                    </div>
+                </div>
+                <!-- Add more items here -->
+            </div>
+        </section>
+
+        <!-- College Section -->
+        <section class="timeline-section college">
+            <h2 class="section-title"><span>College Days</span></h2>
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <div class="cert-image-container">
+                        <img src="images/certificates/2013_education.png" alt="2013 education certificate" />
+                    </div>
+                    <div class="cert-info">
+                        <h3 class="cert-title">Academic Achievement</h3>
+                        <p class="cert-desc">computer science department 2nd
+                        </p>
+                        <span class="cert-date">2016</span>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-image-container">
+                        <div class="cert-placeholder">🎓</div>
+                    </div>
+                    <div class="cert-info">
+                        <h3 class="cert-title">Bachelor of Engineering</h3>
+                        <p class="cert-desc">Graduated with distinction in Computer Science & Engineering.</p>
+                        <span class="cert-date">2017</span>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-image-container">
+                        <div class="cert-placeholder">💻</div>
+                    </div>
+                    <div class="cert-info">
+                        <h3 class="cert-title">Hackathon Winner</h3>
+                        <p class="cert-desc">1st Runner up in the National Level Hackathon for "Smart City Solutions".
+                        </p>
+                        <span class="cert-date">2016</span>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-image-container">
+                        <div class="cert-placeholder">📜</div>
+                    </div>
+                    <div class="cert-info">
+                        <h3 class="cert-title">Paper Presentation</h3>
+                        <p class="cert-desc">Presented a paper on "AI in Healthcare" at the International Conference.
+                        </p>
+                        <span class="cert-date">2015</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Section -->
+        <section class="timeline-section work">
+            <h2 class="section-title"><span>Professional Career</span></h2>
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <div class="cert-image-container">
+                        <div class="cert-placeholder">🚀</div>
+                    </div>
+                    <div class="cert-info">
+                        <h3 class="cert-title">Employee of the Month</h3>
+                        <p class="cert-desc">Awarded for exceptional performance and dedication to the project delivery.
+                        </p>
+                        <span class="cert-date">2023</span>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-image-container">
+                        <div class="cert-placeholder">☁️</div>
+                    </div>
+                    <div class="cert-info">
+                        <h3 class="cert-title">AWS Certified Developer</h3>
+                        <p class="cert-desc">Achieved Associate level certification for AWS development.</p>
+                        <span class="cert-date">2022</span>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-image-container">
+                        <div class="cert-placeholder">💎</div>
+                    </div>
+                    <div class="cert-info">
+                        <h3 class="cert-title">Ruby on Rails Master</h3>
+                        <p class="cert-desc">Completed advanced training in Ruby on Rails architecture and performance.
+                        </p>
+                        <span class="cert-date">2021</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="caption"></div>
+    </div>
+
+    <style>
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 1000px;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+            animation: zoomIn 0.3s;
+        }
+
+        #caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+            height: 150px;
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            z-index: 1001;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: var(--secondary);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Add cursor pointer to images to indicate clickability */
+        .cert-image-container img {
+            cursor: zoom-in;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0)
+            }
+
+            to {
+                transform: scale(1)
+            }
+        }
+    </style>
+
+    <script>
+        // Simple scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.cert-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = `all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) ${index * 0.1}s`;
+            observer.observe(card);
+        });
+
+        // Modal Logic
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const captionText = document.getElementById("caption");
+        const closeBtn = document.getElementsByClassName("close")[0];
+
+        // Get all images inside cert-image-container
+        const images = document.querySelectorAll('.cert-image-container img');
+
+        images.forEach(img => {
+            img.onclick = function (e) {
+                // Prevent bubbling if needed, though here it's fine
+                e.stopPropagation();
+
+                modal.style.display = "flex";
+                modal.style.flexDirection = "column";
+                modal.style.justifyContent = "center";
+                modalImg.src = this.src;
+
+                // Try to find the title for the caption
+                const card = this.closest('.cert-card');
+                const title = card.querySelector('.cert-title').innerText;
+                const desc = card.querySelector('.cert-desc').innerText;
+                captionText.innerHTML = `<strong>${title}</strong><br>${desc}`;
+            }
+        });
+
+        // Close modal actions
+        closeBtn.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        modal.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', function (event) {
+            if (event.key === "Escape" && modal.style.display === "flex") {
+                modal.style.display = "none";
+            }
+        });
+    </script>
+</body>
+
+</html>
