@@ -9,14 +9,16 @@
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
 
         :root {
-            --primary: #6c5ce7;
-            --secondary: #fd79a8;
-            --accent: #00cec9;
-            --dark-bg: #0f0f1a;
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --text-main: #ffffff;
-            --text-muted: rgba(255, 255, 255, 0.7);
+            --primary: #64ffda;
+            --secondary: #8892b0;
+            --accent: #ccd6f6;
+            --dark-bg: #0a192f;
+            --dark-bg-2: #112240;
+            --glass: rgba(17, 34, 64, 0.7);
+            --glass-border: rgba(100, 255, 218, 0.1);
+            --text-main: #e6f1ff;
+            --text-muted: #8892b0;
+            --card-hover: rgba(17, 34, 64, 0.9);
         }
 
         * {
@@ -29,11 +31,12 @@
             font-family: 'Outfit', sans-serif;
             background-color: var(--dark-bg);
             background-image:
-                radial-gradient(circle at 10% 20%, rgba(108, 92, 231, 0.2) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(253, 121, 168, 0.2) 0%, transparent 40%);
+                radial-gradient(at 0% 0%, rgba(100, 255, 218, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(100, 255, 218, 0.05) 0px, transparent 50%);
             color: var(--text-main);
             min-height: 100vh;
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
         /* Floating Background Elements */
@@ -43,12 +46,13 @@
             filter: blur(80px);
             z-index: -1;
             animation: float 10s infinite ease-in-out;
+            opacity: 0.4;
         }
 
         .shape-1 {
             width: 400px;
             height: 400px;
-            background: rgba(108, 92, 231, 0.15);
+            background: rgba(100, 255, 218, 0.1);
             top: -100px;
             left: -100px;
         }
@@ -56,7 +60,7 @@
         .shape-2 {
             width: 300px;
             height: 300px;
-            background: rgba(253, 121, 168, 0.15);
+            background: rgba(136, 146, 176, 0.1);
             bottom: -50px;
             right: -50px;
             animation-delay: -5s;
@@ -65,23 +69,20 @@
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 60px 20px;
         }
 
         /* Header */
         header {
             text-align: center;
-            margin-bottom: 80px;
+            margin-bottom: 100px;
             position: relative;
         }
 
         h1 {
             font-size: 4rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #fff 0%, #a5b1c2 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--text-main);
             margin-bottom: 20px;
             letter-spacing: -2px;
             animation: slideDown 1s ease-out;
@@ -89,7 +90,7 @@
 
         .subtitle {
             font-size: 1.2rem;
-            color: var(--text-muted);
+            color: var(--primary);
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.6;
@@ -105,8 +106,8 @@
             background: var(--glass);
             backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
-            border-radius: 30px;
-            color: var(--text-main);
+            border-radius: 4px;
+            color: var(--primary);
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
@@ -114,10 +115,12 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            font-family: 'Outfit', monospace;
+            font-size: 0.9rem;
         }
 
         .nav-back:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(100, 255, 218, 0.1);
             transform: translateX(5px);
         }
 
@@ -135,13 +138,11 @@
             gap: 20px;
             padding-left: 20px;
             border-left: 5px solid var(--primary);
+            color: var(--text-main);
         }
 
         .section-title span {
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--text-main);
         }
 
         /* Grid Layout */
@@ -152,29 +153,25 @@
         }
 
         .cert-card {
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
+            background: var(--dark-bg-2);
+            border-radius: 10px;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s ease;
             position: relative;
-            perspective: 1000px;
+            box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
         }
 
         .cert-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border-color: rgba(255, 255, 255, 0.3);
-            z-index: 10;
+            transform: translateY(-7px);
+            box-shadow: 0 20px 30px -15px rgba(2, 12, 27, 0.7);
         }
 
         .cert-image-container {
-            height: 200px;
+            height: 220px;
             width: 100%;
             overflow: hidden;
             position: relative;
-            background: #2d3436;
+            background: #020c1b;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -184,11 +181,13 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.5s ease, filter 0.3s ease;
+            filter: grayscale(30%);
         }
 
         .cert-card:hover .cert-image-container img {
-            transform: scale(1.1);
+            transform: scale(1.05);
+            filter: grayscale(0%);
         }
 
         .cert-placeholder {
@@ -197,79 +196,50 @@
         }
 
         .cert-info {
-            padding: 20px;
+            padding: 25px;
         }
 
         .cert-title {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 600;
             margin-bottom: 10px;
             color: var(--text-main);
+            transition: color 0.3s ease;
+        }
+
+        .cert-card:hover .cert-title {
+            color: var(--primary);
         }
 
         .cert-desc {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--text-muted);
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .cert-date {
             display: inline-block;
             margin-top: 15px;
-            padding: 5px 12px;
-            background: rgba(108, 92, 231, 0.2);
-            color: #a29bfe;
-            border-radius: 15px;
-            font-size: 0.8rem;
+            padding: 5px 0;
+            color: var(--primary);
+            font-size: 0.85rem;
             font-weight: 600;
+            font-family: 'Outfit', monospace;
         }
 
-        /* Category Specific Styles */
-        .childhood .section-title {
-            border-color: #00cec9;
-        }
-
-        .childhood .section-title span {
-            background: linear-gradient(90deg, #00cec9, #0984e3);
-            background-clip: text;
-            -webkit-background-clip: text;
-        }
-
-        .childhood .cert-date {
-            background: rgba(0, 206, 201, 0.2);
-            color: #81ecec;
-        }
-
-        .college .section-title {
-            border-color: #fd79a8;
-        }
-
-        .college .section-title span {
-            background: linear-gradient(90deg, #fd79a8, #e84393);
-            background-clip: text;
-            -webkit-background-clip: text;
-        }
-
-        .college .cert-date {
-            background: rgba(253, 121, 168, 0.2);
-            color: #ff7675;
-        }
-
+        /* Category Specific Styles - Simplified for Professional Look */
+        .childhood .section-title,
+        .college .section-title,
         .work .section-title {
-            border-color: #6c5ce7;
+            border-color: var(--primary);
         }
 
-        .work .section-title span {
-            background: linear-gradient(90deg, #6c5ce7, #a29bfe);
-            background-clip: text;
-            -webkit-background-clip: text;
-        }
-
+        .childhood .cert-date,
+        .college .cert-date,
         .work .cert-date {
-            background: rgba(108, 92, 231, 0.2);
-            color: #a29bfe;
+            color: var(--primary);
+            background: transparent;
         }
-
 
         /* Animations */
         @keyframes float {
@@ -286,7 +256,7 @@
 
         @keyframes slideDown {
             from {
-                transform: translateY(-50px);
+                transform: translateY(-30px);
                 opacity: 0;
             }
 
@@ -313,7 +283,7 @@
             }
 
             .container {
-                padding: 20px;
+                padding: 40px 20px;
             }
 
             .section-title {
@@ -324,7 +294,7 @@
                 top: 20px;
                 left: 20px;
                 padding: 8px 16px;
-                font-size: 0.9rem;
+                font-size: 0.8rem;
             }
         }
     </style>
