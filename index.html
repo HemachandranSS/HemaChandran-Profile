@@ -199,6 +199,34 @@
       transform: translateY(-2px);
     }
 
+    .skill-item a {
+      color: var(--primary);
+      text-decoration: none;
+      position: relative;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .skill-item a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .skill-item a:hover {
+      color: var(--text-main);
+      text-shadow: 0 0 8px rgba(100, 255, 218, 0.5);
+    }
+
+    .skill-item a:hover::after {
+      width: 100%;
+    }
+
     /* Experience */
     .experience-item {
       margin-bottom: 40px;
@@ -339,6 +367,38 @@
       color: var(--primary);
     }
 
+    .hobby-item a,
+    .language-item a {
+      color: inherit;
+      text-decoration: none;
+      position: relative;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .hobby-item a::after,
+    .language-item a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .hobby-item a:hover,
+    .language-item a:hover {
+      color: var(--primary);
+      text-shadow: 0 0 8px rgba(100, 255, 218, 0.5);
+    }
+
+    .hobby-item a:hover::after,
+    .language-item a:hover::after {
+      width: 100%;
+    }
+
     /* Animations */
     @keyframes fadeInDown {
       from {
@@ -405,7 +465,7 @@
         <h2>Technical Skills</h2>
         <div class="skills-grid">
           <div class="skill-item">Java 1.8</div>
-          <div class="skill-item">Ruby 3.x</div>
+          <div class="skill-item"><a href="https://github.com/HemachandranSS/ruby" target="_blank">Ruby 3.x</a></div>
           <div class="skill-item">Python 3.x</div>
           <div class="skill-item">Rails Framework 6.x</div>
           <div class="skill-item">REST API</div>
@@ -434,6 +494,17 @@
             Software Developer specialized in Rails Backend Development with
             expertise in building scalable web applications and API
             development.
+          </div>
+        </div>
+        <div class="experience-item">
+          <h3>UPSC Aspirant</h3>
+          <div class="company">
+            <a href="https://drive.google.com/drive/folders/1isT-TJpQ8eeaMbeCf27k-1C-NCwIpR0S" target="_blank">Learning
+              Space Digital</a>
+          </div>
+          <div class="duration">Feb 2020 - Apr 2022</div>
+          <div class="description">
+            UPSC aspirant specialized in International Relations and Economy.
           </div>
         </div>
         <div class="experience-item">
@@ -535,15 +606,21 @@
     <div class="hobbies-languages">
       <section class="section">
         <h2>Hobbies &amp; Interests</h2>
-        <div class="hobby-item">📰 Reading Newspapers</div>
-        <div class="hobby-item">🎵 Playing Harmonica</div>
+        <div class="hobby-item"><a href="https://github.com/HemachandranSS/News-Papers/tree/main/2025"
+            target="_blank">📰 Reading
+            Newspapers</a></div>
+        <div class="hobby-item"><a href="https://bitbucket.org/hchandranss/harmonica/src/master/" target="_blank">🎵
+            Playing Harmonica</a></div>
         <div class="hobby-item">🎧 Listening to Music</div>
       </section>
       <section class="section">
         <h2>Magazine Reader</h2>
         <div class="hobby-item">📖 Sportstar</div>
         <div class="hobby-item">📘 India today</div>
-        <div class="hobby-item">🗞️ Dalal Street Investment Journal</div>
+        <div class="hobby-item"><a
+            href="https://github.com/HemachandranSS/News-Papers/tree/main/Money-And-Investments/Magazines/Dalal-Street-Investment-Journal"
+            target="_blank">🗞️
+            Dalal Street Investment Journal</a></div>
       </section>
     </div>
   </div>
