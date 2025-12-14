@@ -6,21 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Journey - Certificates & Achievements</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
-
-        :root {
-            --primary: #64ffda;
-            --secondary: #8892b0;
-            --accent: #ccd6f6;
-            --dark-bg: #0a192f;
-            --dark-bg-2: #112240;
-            --glass: rgba(17, 34, 64, 0.7);
-            --glass-border: rgba(100, 255, 218, 0.1);
-            --text-main: #e6f1ff;
-            --text-muted: #8892b0;
-            --card-hover: rgba(17, 34, 64, 0.9);
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -28,42 +13,11 @@
         }
 
         body {
-            font-family: 'Outfit', sans-serif;
-            background-color: var(--dark-bg);
-            background-image:
-                radial-gradient(at 0% 0%, rgba(100, 255, 218, 0.05) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(100, 255, 218, 0.05) 0px, transparent 50%);
-            color: var(--text-main);
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #5a2626 0%, #4ecdc4 100%);
             min-height: 100vh;
             overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* Floating Background Elements */
-        .bg-shape {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(80px);
-            z-index: -1;
-            animation: float 10s infinite ease-in-out;
-            opacity: 0.4;
-        }
-
-        .shape-1 {
-            width: 400px;
-            height: 400px;
-            background: rgba(100, 255, 218, 0.1);
-            top: -100px;
-            left: -100px;
-        }
-
-        .shape-2 {
-            width: 300px;
-            height: 300px;
-            background: rgba(136, 146, 176, 0.1);
-            bottom: -50px;
-            right: -50px;
-            animation-delay: -5s;
+            color: white;
         }
 
         .container {
@@ -75,26 +29,26 @@
         /* Header */
         header {
             text-align: center;
-            margin-bottom: 100px;
-            position: relative;
+            margin-bottom: 80px;
+            animation: fadeInDown 1s ease-out;
         }
 
         h1 {
             font-size: 4rem;
             font-weight: 800;
-            color: var(--text-main);
+            color: white;
             margin-bottom: 20px;
-            letter-spacing: -2px;
-            animation: slideDown 1s ease-out;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            animation: glow 3s ease-in-out infinite alternate;
         }
 
         .subtitle {
             font-size: 1.2rem;
-            color: var(--primary);
+            color: #f8f9fa;
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.6;
-            animation: fadeIn 1s ease-out 0.5s backwards;
+            opacity: 0.9;
         }
 
         /* Navigation */
@@ -103,11 +57,11 @@
             top: 30px;
             left: 30px;
             padding: 12px 24px;
-            background: var(--glass);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 4px;
-            color: var(--primary);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            color: white;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
@@ -115,19 +69,17 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            font-family: 'Outfit', monospace;
-            font-size: 0.9rem;
         }
 
         .nav-back:hover {
-            background: rgba(100, 255, 218, 0.1);
-            transform: translateX(5px);
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
         /* Timeline/Sections */
         .timeline-section {
-            margin-bottom: 100px;
-            position: relative;
+            margin-bottom: 80px;
         }
 
         .section-title {
@@ -137,12 +89,14 @@
             align-items: center;
             gap: 20px;
             padding-left: 20px;
-            border-left: 5px solid var(--primary);
-            color: var(--text-main);
+            border-left: 5px solid #6c5ce7;
+            color: #fd79a8;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .section-title span {
-            color: var(--text-main);
+            color: #fd79a8;
         }
 
         /* Grid Layout */
@@ -153,17 +107,21 @@
         }
 
         .cert-card {
-            background: var(--dark-bg-2);
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
             overflow: hidden;
             transition: all 0.3s ease;
-            position: relative;
-            box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-out;
+            animation-fill-mode: both;
         }
 
         .cert-card:hover {
-            transform: translateY(-7px);
-            box-shadow: 0 20px 30px -15px rgba(2, 12, 27, 0.7);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.15);
         }
 
         .cert-image-container {
@@ -171,7 +129,7 @@
             width: 100%;
             overflow: hidden;
             position: relative;
-            background: #020c1b;
+            background: rgba(0, 0, 0, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -181,18 +139,11 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease, filter 0.3s ease;
-            filter: grayscale(30%);
+            transition: transform 0.5s ease;
         }
 
         .cert-card:hover .cert-image-container img {
-            transform: scale(1.05);
-            filter: grayscale(0%);
-        }
-
-        .cert-placeholder {
-            font-size: 3rem;
-            opacity: 0.3;
+            transform: scale(1.1);
         }
 
         .cert-info {
@@ -203,66 +154,90 @@
             font-size: 1.3rem;
             font-weight: 600;
             margin-bottom: 10px;
-            color: var(--text-main);
+            color: #fd79a8;
             transition: color 0.3s ease;
-        }
-
-        .cert-card:hover .cert-title {
-            color: var(--primary);
         }
 
         .cert-desc {
             font-size: 0.95rem;
-            color: var(--text-muted);
+            color: white;
             line-height: 1.6;
+            opacity: 0.9;
         }
 
         .cert-date {
             display: inline-block;
             margin-top: 15px;
-            padding: 5px 0;
-            color: var(--primary);
+            padding: 5px 12px;
+            color: #6c5ce7;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
             font-size: 0.85rem;
             font-weight: 600;
-            font-family: 'Outfit', monospace;
         }
 
-        /* Category Specific Styles - Simplified for Professional Look */
-        .childhood .section-title,
-        .college .section-title,
-        .work .section-title {
-            border-color: var(--primary);
+        /* Floating Elements */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
         }
 
-        .childhood .cert-date,
-        .college .cert-date,
-        .work .cert-date {
-            color: var(--primary);
-            background: transparent;
+        .floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-circle:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-circle:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .floating-circle:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
         }
 
         /* Animations */
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translate(0, 0);
-            }
-
-            50% {
-                transform: translate(20px, -20px);
-            }
-        }
-
-        @keyframes slideDown {
+        @keyframes fadeInDown {
             from {
-                transform: translateY(-30px);
                 opacity: 0;
+                transform: translateY(-50px);
             }
 
             to {
-                transform: translateY(0);
                 opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            }
+
+            to {
+                text-shadow: 0 4px 20px rgba(255, 255, 255, 0.5);
             }
         }
 
@@ -273,6 +248,18 @@
 
             to {
                 opacity: 1;
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
             }
         }
 
@@ -301,9 +288,11 @@
 </head>
 
 <body>
-
-    <div class="bg-shape shape-1"></div>
-    <div class="bg-shape shape-2"></div>
+    <div class="floating-elements">
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+    </div>
 
     <a href="index.html" class="nav-back">
         ← Back to Profile
@@ -844,7 +833,7 @@
 
         .close:hover,
         .close:focus {
-            color: var(--secondary);
+            color: #fd79a8;
             text-decoration: none;
             cursor: pointer;
         }
