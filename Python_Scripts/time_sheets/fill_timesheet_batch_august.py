@@ -30,30 +30,8 @@ SKIP_VALIDATION_MESSAGES = (
 )
 
 TIMESHEET_2026_ENTRIES = [
-  {"date": "01/06/2026", "task": "TEST", "description": "Test"},
-  {"date": "02/06/2026", "task": "TEST", "description": "Test"},
-  {"date": "03/06/2026", "task": "TEST", "description": "Test"},
-  {"date": "04/06/2026", "task": "TEST", "description": "Test"},
-  {"date": "05/06/2026", "task": "TEST", "description": "Test"},
-  {"date": "08/06/2026", "task": "TEST", "description": "Test"},
-  {"date": "09/06/2026", "task": "TEST", "description": "Test"},
-  {"date": "10/06/2026", "task": "TEST", "description": "Test"},
-  {"date": "11/06/2026", "task": "TEST", "description": "Test"},
-  {"date": "12/06/2026", "task": "TEST", "description": "Test"},
-  {"date": "15/06/2026", "task": "TEST", "description": "Test"},
-  {"date": "16/06/2026", "task": "TEST", "description": "Test"},
-  {"date": "17/06/2026", "task": "TEST", "description": "Test"},
-  {"date": "18/06/2026", "task": "TEST", "description": "Test"},
-  {"date": "19/06/2026", "task": "TEST", "description": "Test"},
-  {"date": "22/06/2026", "task": "TEST", "description": "Test"},
-  {"date": "23/06/2026", "task": "TEST", "description": "Test"},
-  {"date": "24/06/2026", "task": "TEST", "description": "Test"},
-  {"date": "25/06/2026", "task": "TEST", "description": "Test"},
-  {"date": "26/06/2026", "task": "TEST", "description": "Test"},
-  {"date": "29/06/2026", "task": "TEST", "description": "Test"},
-  {"date": "30/06/2026", "task": "TEST", "description": "Test"}
+  {"date": "20/08/2026", "task": "Mother Goose Development", "description": "Mother Goose Development"}
 ]
-
 
 def trigger_change(driver, element):
     driver.execute_script(
@@ -421,7 +399,7 @@ def fill_billable_timesheet(driver, wait, entry):
     # Find and click submit button
     submit_button = wait.until(EC.element_to_be_clickable((By.ID, "add_ts")))
     driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", submit_button)
-    time.sleep(0.5)
+    time.sleep(1)
     driver.execute_script("arguments[0].click();", submit_button)
 
     time.sleep(2)  # Wait for response
