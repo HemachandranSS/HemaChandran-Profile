@@ -619,80 +619,44 @@
       margin: 10px auto 0;
     }
 
-    .video-thumb-link {
-      display: block;
+    .video-container {
       position: relative;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-      transition: box-shadow 0.3s ease, transform 0.3s ease;
-      text-decoration: none;
       max-width: 800px;
       margin: 0 auto;
-    }
-
-    .video-thumb-link:hover {
-      box-shadow: 0 25px 60px rgba(108, 92, 231, 0.4);
-      transform: translateY(-4px);
-    }
-
-    .video-thumb-link img {
-      width: 100%;
-      display: block;
-      border-radius: 16px;
-    }
-
-    .video-play-overlay {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0, 0, 0, 0.35);
-      border-radius: 16px;
-      transition: background 0.3s ease;
-    }
-
-    .video-thumb-link:hover .video-play-overlay {
-      background: rgba(0, 0, 0, 0.5);
-    }
-
-    .play-btn {
-      width: 72px;
-      height: 72px;
-      background: #ff0000;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 24px rgba(255, 0, 0, 0.5);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      margin-bottom: 12px;
-    }
-
-    .video-thumb-link:hover .play-btn {
-      transform: scale(1.12);
-      box-shadow: 0 12px 32px rgba(255, 0, 0, 0.7);
-    }
-
-    .play-btn svg {
-      width: 28px;
-      height: 28px;
-      fill: white;
-      margin-left: 4px;
-    }
-
-    .video-yt-label {
-      color: white;
-      font-size: 0.95rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 5px 16px;
       border-radius: 20px;
-      backdrop-filter: blur(6px);
+      overflow: hidden;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    }
+
+    .video-container:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 40px 80px rgba(108, 92, 231, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      border-color: rgba(253, 121, 168, 0.3);
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      /* 16:9 Aspect Ratio */
+      height: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 12px;
     }
   </style>
 </head>
@@ -918,19 +882,15 @@
     <!-- Portfolio Introduction Video -->
     <div class="video-section section">
       <h2>🎬 Portfolio Introduction</h2>
-      <a class="video-thumb-link" href="https://www.youtube.com/watch?v=vkCOkMBxbsY" target="_blank"
-        rel="noopener noreferrer" title="Watch Portfolio Introduction on YouTube">
-        <img src="https://img.youtube.com/vi/vkCOkMBxbsY/maxresdefault.jpg"
-          alt="Hema Chandran SS - Portfolio Introduction Video" />
-        <div class="video-play-overlay">
-          <div class="play-btn">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </div>
-          <span class="video-yt-label">▶ Watch on YouTube</span>
+      <div class="video-container">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/vkCOkMBxbsY?rel=0&showinfo=0&modestbranding=1"
+            title="Portfolio Introduction"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
         </div>
-      </a>
+      </div>
     </div>
     <br>
     <br>
