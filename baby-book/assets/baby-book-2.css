@@ -1,0 +1,3744 @@
+/* Fonts: refined editorial pairing — cursive display, serif accents, rounded sans body */
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Fredoka:wght@300;400;500;600&display=swap');
+
+:root {
+    /* Base surfaces */
+    --bg-main: #f6f1ec;
+    --paper-bg: #fffdfb;
+    --paper-alt: #faf3ee;
+
+    /* Ink & text */
+    --text-dark: #3a2740;
+    --ink: #3a2740;
+    --ink-soft: #6b5570;
+    --muted: #9c8b93;
+
+    /* Lines & structure */
+    --border-color: #7d5c6b;
+    --border-soft: rgba(125, 92, 107, 0.32);
+
+    /* Accent trio: rose, peach, gold foil */
+    --accent: #b3556a;
+    --accent-light: #e7a97e;
+    --gold: #bd9455;
+    --gold-soft: rgba(189, 148, 85, 0.4);
+    --sage: #8a9a7e;
+
+    /* Extra jewel tones for icon fills & variety */
+    --rose-fill: #e78ca0;
+    --peach-fill: #f2b880;
+    --sage-fill: #9db38a;
+    --sky-fill: #8bb3c2;
+    --plum-fill: #9a72a8;
+    --gold-fill: #e0b562;
+
+    /* Motion & elevation */
+    --anim-fast: 0.25s ease;
+    --shadow-soft: 0 20px 55px rgba(58, 39, 64, 0.12);
+    --shadow-page: 0 18px 45px rgba(58, 39, 64, 0.14), 0 2px 8px rgba(58, 39, 64, 0.06);
+}
+
+body {
+    margin: 0;
+    font-family: 'Fredoka', sans-serif;
+    color: var(--text-dark);
+    background: var(--bg-main);
+    min-height: 100vh;
+}
+
+/* Base structural layout */
+.page-shell {
+    width: min(96vw, 1000px);
+    margin: 0 auto;
+    padding: 24px;
+}
+
+/* Default icon treatment — a soft gold outline+fill for any svg not
+   given its own jewel-tone below. Defined early so more specific
+   per-icon rules further down the file always win. */
+.book-page svg {
+    stroke: var(--gold);
+    fill: var(--gold-fill);
+    fill-opacity: 0.14;
+}
+
+.hero {
+    background: rgba(255, 253, 251, 0.78);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    padding: 26px 32px;
+    border-radius: 18px;
+    margin-bottom: 34px;
+    box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    border: 1px solid var(--gold-soft);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.hero h1 {
+    font-family: 'Cormorant Garamond', 'Fredoka', serif;
+    font-weight: 600;
+    font-size: 2rem;
+    letter-spacing: 0.5px;
+    margin: 0;
+    background: linear-gradient(120deg, var(--ink), var(--accent) 70%, var(--gold));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-text {
+    margin: 6px 0 0;
+    color: var(--ink-soft);
+    letter-spacing: 0.3px;
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+}
+
+.actions button {
+    padding: 11px 20px;
+    border-radius: 999px;
+    border: 1px solid var(--gold-soft);
+    background: var(--paper-bg);
+    cursor: pointer;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    color: var(--ink);
+    box-shadow: 0 4px 10px rgba(58, 39, 64, 0.05);
+    transition: all var(--anim-fast);
+}
+
+.actions button:hover {
+    background: linear-gradient(120deg, var(--accent), var(--ink));
+    color: var(--paper-bg);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(179, 85, 106, 0.25);
+}
+
+.book-container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+    padding-bottom: 50px;
+}
+
+.book-page {
+    width: 210mm;
+    height: 297mm;
+    /* Standard A4 Size */
+    background: var(--paper-bg);
+    box-shadow: var(--shadow-page);
+    position: relative;
+    padding: 40px;
+    border: 1px solid var(--border-soft);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Slim gold-foil inset frame echoed on screen and print for a bound, editorial feel */
+.book-page::before {
+    content: '';
+    position: absolute;
+    top: 8mm;
+    right: 8mm;
+    bottom: 8mm;
+    left: 8mm;
+    border: 1.5px solid var(--gold);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Page 1 (Cover) classes */
+.cover-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--gold);
+    /* Matches border on image */
+}
+
+.hanging-decorations {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.dangle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dangle .string {
+    width: 1px;
+    height: 120px;
+    background: linear-gradient(to bottom, var(--gold-soft), var(--border-color));
+}
+
+.dangle svg {
+    width: 60px;
+    height: 60px;
+    stroke: var(--gold);
+    fill: var(--gold-fill);
+    fill-opacity: 0.16;
+    filter: drop-shadow(0 3px 6px rgba(58, 39, 64, 0.12));
+    margin-top: -5px;
+    /* Slight overlap with string */
+}
+
+/* Individual jewel tones per hanging charm */
+.hanging-decorations .dangle:nth-child(1) svg {
+    stroke: var(--gold);
+    fill: var(--gold-fill);
+    fill-opacity: 0.22;
+}
+
+.hanging-decorations .dangle:nth-child(2) svg {
+    stroke: var(--accent);
+    fill: var(--rose-fill);
+    fill-opacity: 0.22;
+}
+
+.hanging-decorations .dangle:nth-child(3) svg {
+    stroke: var(--sage);
+    fill: var(--sage-fill);
+    fill-opacity: 0.22;
+}
+
+.hanging-decorations .dangle:nth-child(4) svg {
+    stroke: var(--accent-light);
+    fill: var(--peach-fill);
+    fill-opacity: 0.22;
+}
+
+.cover-titles {
+    text-align: center;
+    margin-top: 150px;
+}
+
+.title-cursive {
+    font-family: 'Great Vibes', cursive;
+    font-size: 80px;
+    font-weight: 400;
+    margin: 0 0 -20px 0;
+}
+
+.title-main {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 55px;
+    font-weight: 500;
+    letter-spacing: 5px;
+    margin: 0;
+    color: var(--accent);
+    /* Playful color */
+}
+
+.title-sub {
+    font-family: 'Great Vibes', cursive;
+    font-size: 40px;
+    font-weight: 400;
+    margin: 20px 0 0 0;
+}
+
+
+/* Page 2 (Inner Page) classes */
+.inner-page {
+    border: 1px solid var(--border-color);
+}
+
+.page-title-cursive {
+    font-family: 'Great Vibes', cursive;
+    font-size: 50px;
+    font-weight: 400;
+    text-align: center;
+    margin: 0 0 30px 0;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 30px;
+    height: auto;
+}
+
+.left-column {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.top-right {
+    grid-area: 1 / 2 / 2 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bottom-left-icon {
+    grid-area: 2 / 1 / 3 / 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 0px;
+    pointer-events: none;
+}
+
+.bottom-left-icon svg {
+    width: 100px;
+    height: 100px;
+    stroke: var(--accent);
+    fill: var(--rose-fill);
+    fill-opacity: 0.18;
+}
+
+.bottom-right {
+    grid-area: 2 / 2 / 3 / 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-upload {
+    display: block;
+    border: 1px solid var(--border-color);
+    position: relative;
+    cursor: pointer;
+    background-color: var(--paper-alt);
+    overflow: hidden;
+}
+
+.large-image {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+}
+
+.medium-image {
+    width: 100%;
+    height: 320px;
+    margin-bottom: 20px;
+}
+
+.file-input {
+    display: none;
+}
+
+.upload-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.image-preview {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    overflow: hidden;
+}
+
+/* Slider Controls */
+.image-controls {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+}
+
+.image-controls input[type=range] {
+    vertical-align: middle;
+}
+
+.floral-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 200px;
+    height: 200px;
+}
+
+.floral-svg {
+    position: absolute;
+    font-size: 20px;
+    color: var(--border-color);
+    top: 30px;
+    letter-spacing: 15px;
+}
+
+.floral-date::before,
+.floral-date::after {
+    content: '';
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 2px dashed var(--border-color);
+    opacity: 0.4;
+    z-index: 0;
+}
+
+.date-inputs {
+    z-index: 2;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.date-inputs input {
+    width: 30px;
+    border: none;
+    background: transparent;
+    border-bottom: 2px solid var(--border-color);
+    text-align: center;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 500;
+    outline: none;
+    color: var(--text-dark);
+}
+
+.date-label {
+    margin-top: 8px;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    z-index: 2;
+}
+
+
+/* Questionnaire Styles (Page 3) */
+.questionnaire {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 10px;
+    padding: 0 40px;
+}
+
+.q-row {
+    display: flex;
+    align-items: flex-end;
+}
+
+.q-label {
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-right: 15px;
+    letter-spacing: 1px;
+}
+
+.q-input {
+    border: none;
+    border-bottom: 2px solid var(--border-color);
+    background: transparent;
+    outline: none;
+    font-family: inherit;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    padding: 2px 0;
+}
+
+.q-input:focus {
+    border-bottom-color: var(--accent);
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.full-width {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.q-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Birth details page */
+.birth-page {
+    padding-top: 70px;
+    padding-bottom: 50px;
+}
+
+.birth-sheet {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.birth-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    align-items: end;
+    gap: 16px;
+}
+
+.birth-label {
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.8px;
+    line-height: 1;
+}
+
+.birth-line {
+    border-bottom: 1.5px solid var(--border-color);
+    min-height: 28px;
+}
+
+.birth-input {
+    width: 100%;
+    border: none;
+    border-bottom: 1.5px solid var(--border-color);
+    background: transparent;
+    outline: none;
+    font-family: inherit;
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    padding: 2px 0 4px;
+}
+
+.birth-input:focus {
+    border-bottom-color: var(--accent);
+}
+
+.birth-hearts {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 14px;
+    align-items: center;
+    margin-top: 12px;
+    color: var(--ink-soft);
+}
+
+.birth-hearts svg {
+    width: 48px;
+    height: 48px;
+    justify-self: center;
+    stroke: currentColor;
+    fill: currentColor;
+    fill-opacity: 0.16;
+}
+
+.birth-hearts svg:nth-child(3n+1) { color: var(--accent); }
+.birth-hearts svg:nth-child(3n+2) { color: var(--gold); }
+.birth-hearts svg:nth-child(3n+3) { color: var(--sage); }
+
+/* Story page */
+.story-page {
+    padding-top: 55px;
+    padding-bottom: 45px;
+}
+
+.story-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 32px;
+}
+
+.story-line {
+    width: 100%;
+    border: none;
+    border-bottom: 1.5px solid var(--border-color);
+    background: transparent;
+    outline: none;
+    font-family: inherit;
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    padding: 2px 0 4px;
+}
+
+.story-line:focus {
+    border-bottom-color: var(--accent);
+}
+
+/* Homecoming page */
+.home-page {
+    padding-top: 55px;
+    padding-bottom: 40px;
+}
+
+.home-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 32px;
+}
+
+.home-line {
+    width: 100%;
+    border: none;
+    border-bottom: 1.5px solid var(--border-color);
+    background: transparent;
+    outline: none;
+    font-family: inherit;
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    padding: 2px 0 4px;
+}
+
+.home-line:focus {
+    border-bottom-color: var(--accent);
+}
+
+.home-image {
+    width: min(100%, 430px);
+    height: 470px;
+    margin: 30px auto 0;
+}
+
+.home-hearts {
+    margin-top: 28px;
+}
+
+/* First Home page */
+.first-home-page {
+    padding-top: 55px;
+    padding-bottom: 40px;
+}
+
+.first-home-image {
+    width: min(100%, 430px);
+    height: 470px;
+    margin: 20px auto 0;
+}
+
+.first-home-address {
+    margin-top: 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.first-home-address-label {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: inherit;
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.first-home-line {
+    width: 100%;
+    border: none;
+    border-bottom: 1.5px solid var(--border-color);
+    background: transparent;
+    outline: none;
+    font-family: inherit;
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    padding: 2px 0 4px;
+}
+
+.first-home-line:focus {
+    border-bottom-color: var(--accent);
+}
+
+.first-home-hearts {
+    margin-top: 24px;
+}
+
+/* Home Sweet Home page */
+.home-sweet-page {
+    padding-top: 30px;
+    padding-bottom: 28px;
+    display: flex;
+    flex-direction: column;
+}
+
+.home-sweet-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 34px;
+    margin-top: 10px;
+    flex: 1;
+}
+
+.home-sweet-block {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex: 1;
+}
+
+.home-sweet-image {
+    background: transparent;
+}
+
+.home-sweet-image-left {
+    width: 100%;
+    height: 400px;
+}
+
+.home-sweet-date {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding-top: 58px;
+}
+
+.home-sweet-bottom {
+    display: flex;
+    align-items: flex-end;
+    gap: 18px;
+    margin-top: 65px;
+    margin-bottom: 0;
+}
+
+.home-sweet-heart {
+    width: 200px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dark);
+}
+
+/* Our Family Photos page */
+.family-photos-page {
+    padding-top: 30px;
+    padding-bottom: 24px;
+}
+
+.family-photos-image-left {
+    width: 480px;
+    height: 400px;
+}
+
+.family-photos-image-right {
+    width: 600px;
+    height: 380px;
+}
+
+@media print {
+
+    .family-photos-image-left,
+    .family-photos-image-right {
+        border: 1px solid var(--border-color);
+    }
+}
+
+.home-sweet-heart svg {
+    width: 112px;
+    height: 112px;
+    stroke: var(--accent);
+    fill: var(--rose-fill);
+    fill-opacity: 0.2;
+}
+
+.home-sweet-image-right {
+    width: 100%;
+    height: 430px;
+}
+
+.home-sweet-controls {
+    display: none;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.home-sweet-controls input[type="range"] {
+    width: 240px;
+}
+
+/* Family Tree page */
+.family-tree-page {
+    padding-top: 38px;
+    padding-bottom: 32px;
+}
+
+.family-tree-subtitle {
+    text-align: center;
+    font-size: 1.15rem;
+    margin-top: 6px;
+    margin-bottom: 18px;
+    letter-spacing: 1px;
+}
+
+.family-tree-headings {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin: 0 0 12px 0;
+}
+
+.family-tree-heading {
+    text-align: center;
+    font-size: 1.15rem;
+    letter-spacing: 1px;
+}
+
+.family-tree-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 18px;
+}
+
+.family-tree-box {
+    height: 40px;
+    border: 1.5px solid var(--border-color);
+    background: transparent;
+    outline: none;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--text-dark);
+    padding: 4px 10px;
+}
+
+.family-tree-box:focus,
+.family-tree-line:focus {
+    border-color: var(--accent);
+}
+
+.family-tree-line-group {
+    margin-top: 30px;
+}
+
+.family-tree-line-title {
+    text-align: center;
+    font-size: 1.15rem;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+}
+
+.family-tree-line {
+    width: 100%;
+    display: block;
+    border: none;
+    border-bottom: 1.5px solid var(--border-color);
+    background: transparent;
+    outline: none;
+    font-family: inherit;
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    padding: 4px 0 6px;
+    margin-bottom: 18px;
+}
+
+/* Our Family Tree page */
+.our-family-tree-page {
+    padding: 24px 34px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.our-family-tree-diagram {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    margin: 18px auto 0;
+    height: 490px;
+}
+
+.tree-connectors {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+}
+
+.tree-connectors path {
+    stroke: var(--gold);
+    stroke-width: 1.25;
+    stroke-dasharray: 4 3;
+    fill: none;
+}
+
+.tree-node {
+    position: absolute;
+    background: transparent;
+    border: 1.5px solid var(--border-color);
+    outline: none;
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    padding: 4px 8px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.tree-node:focus {
+    border-color: var(--accent);
+}
+
+.tree-node::placeholder {
+    color: var(--muted);
+    opacity: 1;
+}
+
+/* Row 1: 8 small boxes in 4 pairs — left side | right side */
+.tree-node.t-top {
+    top: 20px;
+    width: 70px;
+    height: 50px;
+}
+
+/* Left side: 2 pairs */
+.tree-node.t-top.t1 {
+    left: 0px;
+}
+
+/* pair1: cx=35 */
+.tree-node.t-top.t2 {
+    left: 78px;
+}
+
+/* pair1: cx=113 */
+.tree-node.t-top.t3 {
+    left: 163px;
+}
+
+/* pair2: cx=198 */
+.tree-node.t-top.t4 {
+    left: 241px;
+}
+
+/* pair2: cx=276 */
+
+/* Right side: 2 pairs */
+.tree-node.t-top.t5 {
+    left: 351px;
+}
+
+/* pair3: cx=386 */
+.tree-node.t-top.t6 {
+    left: 429px;
+}
+
+/* pair3: cx=464 */
+.tree-node.t-top.t7 {
+    left: 514px;
+}
+
+/* pair4: cx=549 */
+.tree-node.t-top.t8 {
+    left: 592px;
+}
+
+/* pair4: cx=627 */
+
+/* Row 2 (was row3): 4 grandparent boxes, each centered under a pair */
+.tree-node.t-row3 {
+    top: 150px;
+    width: 90px;
+    height: 55px;
+}
+
+.tree-node.t-row3.c1 {
+    left: 29px;
+}
+
+/* cx=74, under pair1 mid */
+.tree-node.t-row3.c2 {
+    left: 192px;
+}
+
+/* cx=237, under pair2 mid */
+.tree-node.t-row3.c3 {
+    left: 380px;
+}
+
+/* cx=425, under pair3 mid */
+.tree-node.t-row3.c4 {
+    left: 543px;
+}
+
+/* cx=588, under pair4 mid */
+
+/* Row 3: 2 wide parent boxes */
+.tree-node.t-row4 {
+    top: 280px;
+    width: 200px;
+    height: 60px;
+}
+
+.tree-node.t-row4.l1 {
+    left: 56px;
+}
+
+/* cx=156, between c1+c2 */
+.tree-node.t-row4.r1 {
+    left: 407px;
+}
+
+/* cx=507, between c3+c4 */
+
+/* ME box centered (cx=332, between l1=156 and r1=507) */
+.tree-node.me-node {
+    left: 242px;
+    top: 400px;
+    width: 180px;
+    height: 60px;
+}
+
+.our-family-tree-page .tree-node {
+    font-size: 0.85rem;
+    padding: 6px 8px;
+    background: var(--paper-bg);
+}
+
+.me-label {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 470px;
+    text-align: center;
+    font-size: 1.05rem;
+    letter-spacing: 2px;
+}
+
+.my-handprint-page {
+    padding: 22px 28px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.my-handprint-canvas {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 26px;
+}
+
+.my-handprint-box {
+    width: min(78%, 590px);
+    height: 600px;
+    border: 1px solid var(--border-color);
+    display: block;
+    position: relative;
+}
+
+.my-handprint-box .upload-placeholder {
+    font-size: 1rem;
+}
+
+.my-handprint-date-row {
+    width: min(78%, 590px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 54px;
+}
+
+.my-handprint-date-label {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+.my-handprint-date {
+    flex: 0 0 240px;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    outline: none;
+    background: transparent;
+    padding: 4px 6px;
+    font-size: 0.95rem;
+}
+
+.my-handprint-notes-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 42px;
+}
+
+.my-handprint-notes-label {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    min-width: 72px;
+}
+
+.my-handprint-notes,
+.my-handprint-notes-line {
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    outline: none;
+    background: transparent;
+    padding: 4px 6px;
+    font-size: 0.95rem;
+    width: 100%;
+}
+
+.my-handprint-notes-line {
+    margin-top: 32px;
+}
+
+.my-footprint-page {
+    padding: 22px 28px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.my-footprint-canvas {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 26px;
+}
+
+.my-footprint-box {
+    width: min(78%, 590px);
+    height: 600px;
+    border: 1px solid var(--border-color);
+    display: block;
+    position: relative;
+}
+
+.my-footprint-box .upload-placeholder {
+    font-size: 1rem;
+}
+
+.my-footprint-date-row {
+    width: min(78%, 590px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 54px;
+}
+
+.my-footprint-date-label {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+.my-footprint-date {
+    flex: 0 0 240px;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    outline: none;
+    background: transparent;
+    padding: 4px 6px;
+    font-size: 0.95rem;
+}
+
+.my-footprint-notes-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 42px;
+}
+
+.my-footprint-notes-label {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    min-width: 72px;
+}
+
+.my-footprint-notes,
+.my-footprint-notes-line {
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    outline: none;
+    background: transparent;
+    padding: 4px 6px;
+    font-size: 0.95rem;
+    width: 100%;
+}
+
+.my-footprint-notes-line {
+    margin-top: 32px;
+}
+
+.my-first-meal-page {
+    padding: 22px 28px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.my-first-meal-lines {
+    width: 100%;
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.my-first-meal-line {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    outline: none;
+    background: transparent;
+    padding: 4px 6px;
+    font-size: 0.95rem;
+}
+
+.favorite-part-day-page {
+    padding: 24px 28px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.favorite-part-topline {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.favorite-part-label {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.05rem;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.favorite-part-line {
+    flex: 1;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    outline: none;
+    background: transparent;
+    padding: 4px 6px;
+    font-size: 0.95rem;
+}
+
+.favorite-part-subline {
+    width: 100%;
+    margin-top: 26px;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    outline: none;
+    background: transparent;
+    padding: 4px 6px;
+    font-size: 0.95rem;
+}
+
+.favorite-part-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 38px;
+}
+
+.favorite-part-left {
+    width: 64%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.favorite-part-box {
+    width: 100%;
+    height: 355px;
+    border: 1px solid var(--border-color);
+    display: block;
+    position: relative;
+}
+
+.favorite-part-box .upload-placeholder {
+    font-size: 1rem;
+}
+
+.favorite-part-date {
+    width: 28%;
+    display: flex;
+    justify-content: center;
+    padding-top: 34px;
+}
+
+.favorite-part-floral {
+    transform: scale(1.05);
+}
+
+.favorite-part-bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-top: 44px;
+}
+
+.favorite-part-heart {
+    width: 22%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 18px;
+}
+
+.favorite-part-heart svg {
+    width: 132px;
+    height: 132px;
+    stroke: var(--accent);
+    fill: var(--rose-fill);
+    fill-opacity: 0.2;
+}
+
+.favorite-part-right {
+    width: 76%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.favorite-part-box-right {
+    width: 100%;
+    height: 360px;
+}
+
+.my-first-bath-page {
+    padding: 22px 28px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.my-first-bath-lines {
+    width: 100%;
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.my-first-bath-line {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    outline: none;
+    background: transparent;
+    padding: 4px 6px;
+    font-size: 0.95rem;
+}
+
+.my-first-night-home-page {
+    padding: 22px 28px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.my-first-night-home-lines {
+    width: 100%;
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.my-first-night-home-line {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    outline: none;
+    background: transparent;
+    padding: 4px 6px;
+    font-size: 0.95rem;
+}
+
+.my-first-short-page {
+    padding: 22px 28px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.my-first-short-title {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.my-first-short-title > span {
+    white-space: nowrap;
+}
+
+.my-first-short-dotted {
+    flex: 1;
+    border: none;
+    border-bottom: 1px dotted var(--border-color);
+    outline: none;
+    background: transparent;
+    padding: 0 0 2px;
+    font-size: 0.95rem;
+}
+
+.my-first-short-lines {
+    width: 100%;
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.my-first-short-line {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    outline: none;
+    background: transparent;
+    padding: 4px 6px;
+    font-size: 0.95rem;
+}
+
+/* Page 4 Textarea boxes */
+.text-boxes-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    height: 400px;
+}
+
+.text-box-wrapper {
+    flex: 1;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    background: transparent;
+}
+
+.text-box-title {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin: 0 0 15px 0;
+    color: var(--text-dark);
+}
+
+.q-textarea {
+    flex: 1;
+    border: none;
+    background: transparent;
+    resize: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* Page 8 Pregnancy Grid */
+.preg-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.preg-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.image-upload.preg-image {
+    height: 360px;
+}
+
+/* Print Styles */
+@media print {
+    @page {
+        margin: 0;
+        size: A4;
+    }
+
+    body {
+        background: transparent !important;
+        margin: 0;
+    }
+
+    .page-shell {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .do-not-print {
+        display: none !important;
+    }
+
+    .book-container {
+        gap: 0;
+        padding-bottom: 0;
+    }
+
+    .book-page {
+        margin: 0;
+        box-shadow: none !important;
+        page-break-after: always;
+        break-after: page;
+        border: 2px solid var(--border-color);
+        border-radius: 0;
+        background-color: white !important;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    /* Keep inner borders in printing to look like sketch */
+    .image-upload {
+        background: transparent !important;
+    }
+
+    .image-preview {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    /* Reclaim the space occupied by the hidden zoom sliders */
+    .large-image {
+        min-height: 440px !important;
+    }
+
+    .medium-image {
+        height: 360px !important;
+    }
+
+    .birth-page {
+        padding-top: 74px;
+        padding-bottom: 56px;
+    }
+
+    .birth-line {
+        border-bottom-color: var(--border-color);
+    }
+
+    .birth-hearts {
+        gap: 10px;
+        margin-top: 6px;
+    }
+
+    .story-page {
+        padding-top: 50px;
+        padding-bottom: 40px;
+    }
+
+    .home-page {
+        padding-top: 50px;
+        padding-bottom: 36px;
+    }
+
+    .home-image {
+        height: 450px !important;
+    }
+
+    .first-home-page {
+        padding-top: 50px;
+        padding-bottom: 36px;
+    }
+
+    .first-home-image {
+        height: 450px !important;
+    }
+
+    .home-sweet-page {
+        padding-top: 28px;
+        padding-bottom: 24px;
+    }
+
+    .home-sweet-top {
+        gap: 24px;
+    }
+
+    .home-sweet-image-left {
+        height: 395px !important;
+    }
+
+    .home-sweet-image-right {
+        height: 380px !important;
+    }
+
+    .family-photos-page {
+        padding-top: 28px;
+        padding-bottom: 24px;
+    }
+
+    .family-photos-image-left {
+        height: 395px !important;
+    }
+
+    .family-photos-image-right {
+        height: 380px !important;
+    }
+
+    .family-tree-page {
+        padding-top: 34px;
+        padding-bottom: 28px;
+    }
+
+    .our-family-tree-page {
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    .our-family-tree-diagram {
+        width: 700px !important;
+        height: 510px !important;
+        transform: scale(0.9);
+        transform-origin: top center;
+    }
+}
+/* =========================================
+   PAGE 30: MY FIRST TRIP OUTSIDE
+========================================= */
+
+.my-first-trip-outside-page {
+    padding: 22px 28px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.my-first-trip-outside-lines {
+    width: 100%;
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.my-first-trip-outside-line {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    outline: none;
+    background: transparent;
+    padding: 4px 6px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+}
+
+.my-first-trip-outside-line:focus {
+    border-bottom-color: var(--accent);
+}
+
+.my-first-short-page {
+    padding: 22px 28px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.my-first-short-title {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.my-first-short-title > span {
+    white-space: nowrap;
+}
+
+.my-first-short-dotted {
+    flex: 1;
+    border: none;
+    border-bottom: 1px dotted var(--border-color);
+    outline: none;
+    background: transparent;
+    padding: 0 0 2px;
+    font-size: 0.95rem;
+}
+
+.my-first-short-lines {
+    width: 100%;
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.my-first-short-line {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    outline: none;
+    background: transparent;
+    padding: 4px 6px;
+    font-size: 0.95rem;
+}
+
+/* =========================================
+   PAGE 42: FIRST WEEK
+========================================= */
+
+.first-week-page {
+    padding: 22px 28px 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.first-week-title {
+    text-align: center;
+    margin: 0 0 26px;
+}
+
+
+/* BIG IMAGE */
+
+.first-week-image-section {
+    display: flex;
+    justify-content: center;
+}
+
+.first-week-image-box {
+    width: 70%;
+    height: 360px;
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+
+/* DATE */
+
+.first-week-date-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 30px;
+}
+
+.first-week-date-line {
+    flex: 1;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    outline: none;
+    background: transparent;
+    padding: 4px 6px;
+}
+
+
+/* LABEL TEXT */
+
+.first-week-label {
+    white-space: nowrap;
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+
+/* HEIGHT / WEIGHT / HEAD */
+
+.first-week-stats {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.first-week-stat {
+    flex: 1;
+    height: 94px;
+    border: 1px solid var(--border-color);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-top: 14px;
+}
+
+.first-week-stat span {
+    font-size: 0.95rem;
+}
+
+.first-week-stat-input {
+    width: 80%;
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+
+    text-align: center;
+    font-size: 1rem;
+}
+
+
+/* TEXT ROWS */
+
+.first-week-text-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 22px;
+}
+
+.first-week-line {
+    flex: 1;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    outline: none;
+    background: transparent;
+    padding: 4px 6px;
+}
+
+
+/* FULL WIDTH WRITING LINES */
+
+.first-week-full-line {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    outline: none;
+    background: transparent;
+
+    margin-top: 26px;
+    padding: 4px 6px;
+}
+
+
+/* =========================================
+   PAGE 58: MY FIRST BIRTHDAY
+========================================= */
+
+.my-first-birthday-page {
+    padding: 35px 24px 30px;
+}
+
+
+/* TITLE */
+
+.my-first-birthday-title {
+    text-align: center;
+    margin: 0 0 45px;
+}
+
+
+/* IMAGE */
+
+.my-first-birthday-image-section {
+    display: flex;
+    justify-content: center;
+}
+
+.my-first-birthday-image-box {
+    width: 72%;
+    height: 475px;
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+
+/* DATE */
+
+.my-first-birthday-date-row {
+    width: 40%;
+    margin: 28px auto 0;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.my-first-birthday-date-line {
+    flex: 1;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    outline: none;
+    background: transparent;
+    padding: 4px 6px;
+}
+
+
+/* NOTES */
+
+.my-first-birthday-notes-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.my-first-birthday-label {
+    white-space: nowrap;
+    font-size: 0.95rem;
+}
+
+.my-first-birthday-notes-line {
+    flex: 1;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    outline: none;
+    background: transparent;
+    padding: 4px 6px;
+}
+
+.my-first-birthday-full-line {
+    width: 100%;
+    margin-top: 35px;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    outline: none;
+    background: transparent;
+    padding: 4px 6px;
+}
+
+
+/* =========================================
+   PAGE 59: BIRTHDAY WISHES
+========================================= */
+
+.birthday-wishes-page {
+    padding: 40px 40px 30px;
+    min-height: 100%;
+}
+
+
+/* TITLE */
+
+.birthday-wishes-title {
+    text-align: center;
+    margin: 0 0 60px;
+}
+
+
+/* WRITING AREA */
+
+.birthday-wishes-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+
+/* INDIVIDUAL LINE */
+
+.birthday-wish-line {
+    width: 100%;
+    height: 22px;
+
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+
+    background: transparent;
+    outline: none;
+
+    padding: 0 5px;
+
+    box-sizing: border-box;
+}
+
+
+
+
+
+/* =========================================
+   PAGE 60 : TEETH GROWTH CHART
+========================================= */
+
+.teeth-chart-page {
+    padding: 30px 25px 25px;
+    position: relative;
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.teeth-chart-title {
+    text-align: center;
+    margin: 0 0 25px;
+    font-size: 52px;
+    line-height: 1;
+}
+
+
+/* =========================================
+   MAIN CANVAS
+========================================= */
+
+.teeth-layout {
+    width: 100%;
+    height: 600px;
+    position: relative;
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   TOOTH GROUP
+========================================= */
+
+.tooth-group {
+    position: absolute;
+    width: 145px;
+    height: 100px;
+}
+
+
+/* =========================================
+   INPUT BOX
+========================================= */
+
+.tooth-date-input {
+    width: 118px;
+    height: 38px;
+
+    position: absolute;
+
+    border: 1px solid var(--border-color);
+    background: transparent;
+
+    box-sizing: border-box;
+
+    outline: none;
+
+    padding: 5px 8px;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   CONNECTOR LINE
+========================================= */
+
+.connector {
+    position: absolute;
+    height: 0;
+
+    border-top: 1px dotted var(--border-color);
+
+    transform-origin: left center;
+}
+
+
+/* =========================================
+   TOOTH DESIGN
+========================================= */
+
+.baby-tooth {
+    position: absolute;
+
+    width: 42px;
+    height: 58px;
+
+    background: var(--paper-alt);
+
+    border: 1px solid var(--muted);
+
+    border-radius:
+        42% 42%
+        38% 38%
+        48% 48%;
+
+    box-shadow:
+        2px 3px 6px rgba(0,0,0,.20);
+
+    box-sizing: border-box;
+}
+
+
+/* Slightly more organic tooth shape */
+
+.baby-tooth::before {
+    content: "";
+
+    position: absolute;
+
+    width: 18px;
+    height: 20px;
+
+    bottom: -8px;
+    left: 2px;
+
+    background: var(--paper-alt);
+
+    border-left: 1px solid var(--muted);
+    border-bottom: 1px solid var(--muted);
+
+    border-radius: 0 0 0 12px;
+
+    transform: rotate(10deg);
+}
+
+
+/* =========================================
+   TOP LEFT GROUPS
+========================================= */
+
+.tg-tl-1 {
+    left: 4%;
+    top: 120px;
+}
+
+.tg-tl-1 .tooth-date-input {
+    left: 0;
+}
+
+.tg-tl-1 .baby-tooth {
+    right: 5px;
+    bottom: 0;
+    transform: rotate(-42deg);
+}
+
+.tg-tl-1 .connector {
+    width: 55px;
+    left: 110px;
+    top: 39px;
+    transform: rotate(35deg);
+}
+
+
+.tg-tl-2 {
+    left: 1%;
+    top: 190px;
+}
+
+.tg-tl-2 .baby-tooth {
+    right: 0;
+    bottom: 0;
+    transform: rotate(-60deg);
+}
+
+.tg-tl-2 .connector {
+    width: 60px;
+    left: 110px;
+    top: 38px;
+    transform: rotate(20deg);
+}
+
+
+.tg-tl-3 {
+    left: 0;
+    top: 270px;
+}
+
+.tg-tl-3 .baby-tooth {
+    right: 0;
+    bottom: 0;
+    transform: rotate(-70deg);
+}
+
+.tg-tl-3 .connector {
+    width: 55px;
+    left: 112px;
+    top: 35px;
+    transform: rotate(10deg);
+}
+
+
+.tg-tl-4 {
+    left: 5%;
+    top: 365px;
+}
+
+.tg-tl-4 .baby-tooth {
+    right: 0;
+    bottom: 0;
+    transform: rotate(-38deg);
+}
+
+.tg-tl-4 .connector {
+    width: 60px;
+    left: 110px;
+    top: 40px;
+    transform: rotate(-30deg);
+}
+
+
+/* =========================================
+   TOP CENTER GROUPS
+========================================= */
+
+.tg-top-1 {
+    left: 26%;
+    top: 35px;
+}
+
+.tg-top-1 .baby-tooth {
+    left: 55px;
+    bottom: 0;
+    transform: rotate(-28deg);
+}
+
+.tg-top-1 .connector {
+    width: 60px;
+    left: 70px;
+    top: 40px;
+    transform: rotate(55deg);
+}
+
+
+.tg-top-2 {
+    left: 37%;
+    top: 35px;
+}
+
+.tg-top-2 .baby-tooth {
+    left: 50px;
+    bottom: 0;
+    transform: rotate(-8deg);
+}
+
+.tg-top-2 .connector {
+    width: 65px;
+    left: 70px;
+    top: 40px;
+    transform: rotate(65deg);
+}
+
+
+.tg-top-3 {
+    left: 48%;
+    top: 35px;
+}
+
+.tg-top-3 .baby-tooth {
+    left: 45px;
+    bottom: 0;
+}
+
+.tg-top-3 .connector {
+    width: 65px;
+    left: 70px;
+    top: 40px;
+    transform: rotate(115deg);
+}
+
+
+.tg-top-4 {
+    right: 26%;
+    top: 35px;
+}
+
+.tg-top-4 .baby-tooth {
+    left: 45px;
+    bottom: 0;
+    transform: rotate(25deg);
+}
+
+.tg-top-4 .connector {
+    width: 60px;
+    left: 45px;
+    top: 42px;
+    transform: rotate(125deg);
+}
+
+
+/* =========================================
+   TOP RIGHT GROUPS
+========================================= */
+
+.tg-tr-1 {
+    right: 4%;
+    top: 120px;
+}
+
+.tg-tr-1 .tooth-date-input {
+    right: 0;
+}
+
+.tg-tr-1 .baby-tooth {
+    left: 0;
+    bottom: 0;
+    transform: rotate(42deg);
+}
+
+.tg-tr-1 .connector {
+    width: 55px;
+    right: 110px;
+    top: 39px;
+    transform: rotate(-35deg);
+}
+
+
+.tg-tr-2 {
+    right: 1%;
+    top: 190px;
+}
+
+.tg-tr-2 .tooth-date-input {
+    right: 0;
+}
+
+.tg-tr-2 .baby-tooth {
+    left: 0;
+    bottom: 0;
+    transform: rotate(60deg);
+}
+
+.tg-tr-2 .connector {
+    width: 60px;
+    right: 110px;
+    top: 38px;
+    transform: rotate(-20deg);
+}
+
+
+.tg-tr-3 {
+    right: 0;
+    top: 270px;
+}
+
+.tg-tr-3 .tooth-date-input {
+    right: 0;
+}
+
+.tg-tr-3 .baby-tooth {
+    left: 0;
+    bottom: 0;
+    transform: rotate(70deg);
+}
+
+
+.tg-tr-4 {
+    right: 5%;
+    top: 365px;
+}
+
+.tg-tr-4 .tooth-date-input {
+    right: 0;
+}
+
+.tg-tr-4 .baby-tooth {
+    left: 0;
+    bottom: 0;
+    transform: rotate(38deg);
+}
+
+
+/* =========================================
+   BOTTOM LEFT
+========================================= */
+
+.tg-bl-1 {
+    left: 12%;
+    bottom: 20px;
+}
+
+.tg-bl-1 .baby-tooth {
+    right: 0;
+    top: 0;
+    transform: rotate(-42deg);
+}
+
+
+.tg-bl-2 {
+    left: 25%;
+    bottom: 0;
+}
+
+.tg-bl-2 .baby-tooth {
+    right: 5px;
+    top: 0;
+    transform: rotate(-20deg);
+}
+
+
+/* =========================================
+   BOTTOM CENTER
+========================================= */
+
+.tg-bottom-1 {
+    left: 38%;
+    bottom: 0;
+}
+
+.tg-bottom-1 .baby-tooth {
+    left: 48px;
+    top: 0;
+    transform: rotate(-5deg);
+}
+
+
+.tg-bottom-2 {
+    right: 38%;
+    bottom: 0;
+}
+
+.tg-bottom-2 .baby-tooth {
+    left: 48px;
+    top: 0;
+    transform: rotate(5deg);
+}
+
+
+/* =========================================
+   BOTTOM RIGHT
+========================================= */
+
+.tg-bl-3 {
+    right: 25%;
+    bottom: 0;
+}
+
+.tg-bl-3 .tooth-date-input {
+    right: 0;
+}
+
+.tg-bl-3 .baby-tooth {
+    left: 5px;
+    top: 0;
+    transform: rotate(20deg);
+}
+
+
+.tg-bl-4 {
+    right: 12%;
+    bottom: 20px;
+}
+
+.tg-bl-4 .tooth-date-input {
+    right: 0;
+}
+
+.tg-bl-4 .baby-tooth {
+    left: 0;
+    top: 0;
+    transform: rotate(42deg);
+}
+
+
+/* =========================================
+   POSITION LABELS
+========================================= */
+
+.arch-label {
+    position: absolute;
+
+    font-size: 17px;
+
+    letter-spacing: 1px;
+}
+
+.label-top {
+    top: 210px;
+    left: 50%;
+
+    transform: translateX(-50%);
+}
+
+.label-left {
+    top: 315px;
+    left: 20%;
+}
+
+.label-right {
+    top: 315px;
+    right: 20%;
+}
+
+.label-bottom {
+    bottom: 125px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.teeth-chart-footer {
+    width: 100%;
+
+    margin-top: 10px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 28px;
+}
+
+
+/* HEARTS */
+
+.footer-heart {
+    font-size: 48px;
+
+    line-height: 1;
+
+    font-family: Arial, sans-serif;
+
+    font-weight: 300;
+}
+
+
+/* TEXT */
+
+.dates-appeared {
+    font-size: 17px;
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+}
+
+/* =========================================
+   PAGE 60 – TEETH GROWTH CHART
+   BLACK & WHITE THEME
+========================================= */
+
+.page-60 {
+    width: 100%;
+    min-height: 100%;
+    box-sizing: border-box;
+
+    padding: 25px 35px 30px;
+
+    background: var(--paper-bg);
+    color: var(--ink);
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.teeth-growth-title {
+    margin: 0 0 20px;
+
+    text-align: center;
+
+    font-family: "Great Vibes", cursive;
+
+    font-size: 52px;
+    font-weight: 400;
+
+    color: var(--ink);
+}
+
+
+/* =========================================
+   MOUTH CHART
+========================================= */
+
+.mouth-chart {
+    position: relative;
+
+    width: 100%;
+    height: 500px;
+
+    max-width: 650px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   DATE BOXES
+========================================= */
+
+.mouth-chart input {
+    width: 100px;
+    height: 32px;
+
+    box-sizing: border-box;
+
+    background: var(--paper-bg);
+
+    border: 1px solid var(--border-color);
+
+    outline: none;
+
+    text-align: center;
+
+    font-size: 13px;
+
+    color: var(--ink);
+}
+
+
+/* =========================================
+   BASE TOOTH
+========================================= */
+
+.tooth {
+    width: 34px;
+    height: 46px;
+
+    position: relative;
+
+    background: var(--paper-bg);
+
+    border: 1px solid var(--border-color);
+
+    border-radius:
+        42% 42%
+        48% 48% /
+        55% 55%
+        35% 35%;
+
+    box-shadow: none;
+}
+
+
+/* TOOTH ROOT */
+
+.tooth::before {
+    content: "";
+
+    position: absolute;
+
+    width: 16px;
+    height: 18px;
+
+    left: 8px;
+    bottom: -8px;
+
+    background: var(--paper-bg);
+
+    border-left: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+
+    border-radius: 0 0 45% 45%;
+}
+
+
+/* =========================================
+   TOP TEETH
+========================================= */
+
+.top-dates {
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    gap: 18px;
+}
+
+
+.date-group {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.top-dates .date-group:nth-child(1) {
+    transform: rotate(-18deg);
+}
+
+.top-dates .date-group:nth-child(2) {
+    transform: rotate(-6deg);
+}
+
+.top-dates .date-group:nth-child(3) {
+    transform: rotate(6deg);
+}
+
+.top-dates .date-group:nth-child(4) {
+    transform: rotate(18deg);
+}
+
+
+/* Keep date boxes straight */
+
+.top-dates input,
+.bottom-dates input {
+    transform: rotate(0deg);
+}
+
+
+/* =========================================
+   SIDE TEETH
+========================================= */
+
+.side-teeth {
+    position: absolute;
+
+    top: 125px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 30px;
+}
+
+
+.side-left {
+    left: 0;
+}
+
+
+.side-right {
+    right: 0;
+}
+
+
+.side-row {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+.side-left .side-row:nth-child(1) .tooth {
+    transform: rotate(-45deg);
+}
+
+.side-left .side-row:nth-child(2) .tooth {
+    transform: rotate(-70deg);
+}
+
+.side-left .side-row:nth-child(3) .tooth {
+    transform: rotate(-45deg);
+}
+
+
+.side-right .side-row:nth-child(1) .tooth {
+    transform: rotate(45deg);
+}
+
+.side-right .side-row:nth-child(2) .tooth {
+    transform: rotate(70deg);
+}
+
+.side-right .side-row:nth-child(3) .tooth {
+    transform: rotate(45deg);
+}
+
+
+/* =========================================
+   BOTTOM TEETH
+========================================= */
+
+.bottom-dates {
+    position: absolute;
+
+    bottom: 0;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    gap: 18px;
+}
+
+
+.bottom-dates .date-group {
+    flex-direction: column;
+}
+
+
+.bottom-dates .date-group:nth-child(1) {
+    transform: rotate(18deg);
+}
+
+.bottom-dates .date-group:nth-child(2) {
+    transform: rotate(6deg);
+}
+
+.bottom-dates .date-group:nth-child(3) {
+    transform: rotate(-6deg);
+}
+
+.bottom-dates .date-group:nth-child(4) {
+    transform: rotate(-18deg);
+}
+
+
+/* =========================================
+   CHART LABELS
+========================================= */
+
+.mouth-label {
+    position: absolute;
+
+    font-size: 14px;
+
+    letter-spacing: 1px;
+
+    color: var(--ink);
+}
+
+
+.label-top {
+    top: 145px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+}
+
+
+.label-left {
+    top: 245px;
+
+    left: 22%;
+}
+
+
+.label-right {
+    top: 245px;
+
+    right: 22%;
+}
+
+
+.label-bottom {
+    bottom: 115px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.dates-footer {
+    margin-top: 10px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 20px;
+
+    color: var(--ink);
+}
+
+
+.heart {
+    font-family: Arial, sans-serif;
+
+    font-size: 38px;
+
+    font-weight: 300;
+
+    line-height: 1;
+
+    color: var(--ink);
+}
+
+
+.dates-footer-text {
+    font-size: 14px;
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+
+    color: var(--ink);
+}
+
+
+
+/* =========================================
+   PAGE 60 – FULL A4 PAGE
+========================================= */
+
+.page-60 {
+    width: 210mm;
+    height: 297mm;
+
+    min-height: 297mm;
+
+    margin: 0;
+    padding: 14mm 12mm 12mm;
+
+    box-sizing: border-box;
+
+    background: var(--paper-bg) !important;
+    color: var(--ink);
+
+    position: relative;
+
+    overflow: hidden;
+
+    page-break-after: always;
+}
+
+
+/* Make sure ALL page backgrounds stay white */
+
+.page-60,
+.page-60::before,
+.page-60::after {
+    background-color: var(--paper-bg) !important;
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.page-60 .teeth-growth-title {
+    margin: 0 0 8mm;
+
+    text-align: center;
+
+    font-family: "Great Vibes", cursive;
+    font-size: 17mm;
+    font-weight: 400;
+
+    line-height: 1;
+
+    color: var(--ink) !important;
+}
+
+
+/* =========================================
+   MAIN TEETH CHART
+   EXPANDED FOR A4
+========================================= */
+
+.page-60 .mouth-chart {
+    position: relative;
+
+    width: 100%;
+    max-width: none;
+
+    height: 185mm;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   DATE INPUT BOXES
+========================================= */
+
+.page-60 .mouth-chart input {
+    width: 30mm;
+    height: 10mm;
+
+    box-sizing: border-box;
+
+    background: var(--paper-bg) !important;
+
+    border: 0.3mm solid var(--border-color) !important;
+
+    outline: none;
+
+    color: var(--ink);
+
+    font-size: 12px;
+
+    text-align: center;
+
+    box-shadow: none !important;
+}
+
+
+/* =========================================
+   TEETH
+========================================= */
+
+.page-60 .tooth {
+    width: 11mm;
+    height: 15mm;
+
+    background: var(--paper-bg) !important;
+
+    border: 0.3mm solid var(--border-color) !important;
+
+    box-shadow: none !important;
+}
+
+
+.page-60 .tooth::before {
+    background: var(--paper-bg) !important;
+
+    border-color: var(--border-color) !important;
+
+    box-shadow: none !important;
+}
+
+
+/* =========================================
+   TOP TEETH
+========================================= */
+
+.page-60 .top-dates {
+    top: 4mm;
+
+    gap: 7mm;
+}
+
+
+/* =========================================
+   SIDE TEETH
+========================================= */
+
+.page-60 .side-teeth {
+    top: 52mm;
+
+    gap: 14mm;
+}
+
+
+.page-60 .side-left {
+    left: 0;
+}
+
+
+.page-60 .side-right {
+    right: 0;
+}
+
+
+.page-60 .side-row {
+    gap: 6mm;
+}
+
+
+/* =========================================
+   BOTTOM TEETH
+========================================= */
+
+.page-60 .bottom-dates {
+    bottom: 10mm;
+
+    gap: 7mm;
+}
+
+
+/* =========================================
+   CENTER LABELS
+========================================= */
+
+.page-60 .mouth-label {
+    font-size: 4mm;
+
+    letter-spacing: 0.4mm;
+
+    color: var(--ink) !important;
+}
+
+
+.page-60 .label-top {
+    top: 65mm;
+}
+
+
+.page-60 .label-left {
+    top: 95mm;
+    left: 22%;
+}
+
+
+.page-60 .label-right {
+    top: 95mm;
+    right: 22%;
+}
+
+
+.page-60 .label-bottom {
+    bottom: 45mm;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.page-60 .dates-footer {
+    margin-top: 3mm;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 7mm;
+
+    color: var(--ink) !important;
+}
+
+
+.page-60 .dates-footer-text {
+    font-size: 4mm;
+
+    letter-spacing: 0.4mm;
+
+    color: var(--ink) !important;
+}
+
+
+.page-60 .heart {
+    font-size: 11mm;
+
+    color: var(--ink) !important;
+
+    line-height: 1;
+}
+
+
+/* =========================================
+   PRINT SETTINGS
+========================================= */
+
+@media print {
+
+    .page-60 {
+        width: 210mm !important;
+        height: 297mm !important;
+
+        margin: 0 !important;
+
+        page-break-after: always;
+        break-after: page;
+    }
+
+}
+
+
+/* PAGE 61 */
+
+.smile-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+
+/* IMAGE BOX */
+
+.smile-image-box {
+    width: 78%;
+    height: 475px;
+
+    margin: 0 auto;
+
+    border: 1px solid var(--border-color);
+
+    position: relative;
+    overflow: hidden;
+
+    background: var(--paper-bg);
+}
+
+
+/* Hide actual file input */
+
+.image-upload-input {
+    display: none;
+}
+
+
+/* Clickable upload area */
+
+.image-upload-label {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    position: relative;
+}
+
+
+/* Upload text */
+
+.upload-placeholder {
+    font-size: 16px;
+    color: var(--muted);
+}
+
+
+/* Image preview */
+
+.smile-image-preview {
+    display: none;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+/* DATE */
+
+.smile-date-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 55px;
+}
+
+
+.smile-date-input {
+    width: 210px;
+
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+
+    background: transparent;
+
+    outline: none;
+}
+
+
+/* NOTES */
+
+.smile-notes {
+    margin-top: 28px;
+}
+
+
+.smile-notes-row {
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+.smile-notes-input {
+    flex: 1;
+
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+
+    background: transparent;
+
+    outline: none;
+}
+
+
+.smile-notes-full-line {
+    width: 100%;
+
+    margin-top: 28px;
+
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+
+    background: transparent;
+
+    outline: none;
+}
+
+
+
+/* =========================================
+   PAGE 62 – MEMORIES FROM MY FIRST YEAR
+========================================= */
+
+.memories-first-year-page {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 100%;
+    padding: 35px 28px;
+}
+
+
+/* TITLE */
+
+.memories-first-year-title {
+    text-align: center;
+    margin: 5px 0 65px;
+}
+
+
+/* WRITING AREA */
+
+.memories-writing-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+}
+
+
+/* INDIVIDUAL LINE */
+
+.memory-line {
+    width: 100%;
+    height: 22px;
+
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+
+    background: transparent;
+
+    box-sizing: border-box;
+    outline: none;
+
+    font-size: 16px;
+    color: var(--ink);
+}
+
+
+
+/* =========================================
+   PAGE 63 – DECORATIVE MEMORY NOTES
+========================================= */
+
+.baby-memory-notes-page {
+    position: relative;
+
+    width: 100%;
+    min-height: 100%;
+
+    box-sizing: border-box;
+
+    padding: 25px 22px 35px;
+}
+
+
+/* =========================================
+   TOP HANGING DECORATIONS
+========================================= */
+
+.baby-hanging-decoration {
+    height: 120px;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+
+    gap: 28px;
+
+    padding-right: 25px;
+
+    box-sizing: border-box;
+}
+
+
+.hanging-item {
+    position: relative;
+
+    width: 55px;
+    height: 105px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.hanging-string {
+    display: block;
+
+    width: 1px;
+    height: 42px;
+
+    background: linear-gradient(to bottom, var(--gold-soft), var(--border-color));
+}
+
+
+/* Decorative symbols */
+
+.duck-decoration,
+.toy-decoration,
+.sock-decoration,
+.moon-decoration {
+    margin-top: 5px;
+
+    font-size: 42px;
+    line-height: 1;
+
+    color: var(--accent);
+    filter: drop-shadow(0 2px 4px rgba(58, 39, 64, 0.15));
+}
+
+.hanging-duck .duck-decoration { color: var(--accent); }
+.hanging-toy .toy-decoration { color: var(--gold); }
+.hanging-sock .sock-decoration { color: var(--sage); }
+.hanging-moon .moon-decoration { color: var(--plum-fill); }
+
+
+/* Make each decoration slightly different */
+
+.hanging-duck {
+    transform: translateY(18px);
+}
+
+.hanging-toy {
+    transform: translateY(0);
+}
+
+.hanging-sock {
+    transform: translateY(8px);
+}
+
+.hanging-moon {
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   WRITING LINES
+========================================= */
+
+.baby-memory-writing-lines {
+    display: flex;
+    flex-direction: column;
+
+    gap: 26px;
+}
+
+
+.baby-memory-line {
+    width: 100%;
+    height: 23px;
+
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+
+    background: transparent;
+
+    outline: none;
+
+    box-sizing: border-box;
+
+    color: var(--ink);
+}
+
+
+/* =========================================
+   BOTTOM HEART
+========================================= */
+
+.memory-heart-decoration {
+    position: relative;
+    left: 594px;
+    bottom: 3px;
+    font-size: 96px;
+    line-height: 1;
+    color: var(--rose-fill);
+    opacity: 0.55;
+    background: transparent;
+    padding: 5px 10px;
+}
+
+
+
+
+.baby-memory-page {
+    width: 210mm;
+    height: 297mm;
+
+    padding: 7mm 7mm 10mm;
+
+    box-sizing: border-box;
+
+    position: relative;
+
+    background: var(--paper-bg);
+    color: var(--ink);
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   A4 COVER PAGE
+========================================= */
+
+.cover-page {
+    width: 210mm;
+    height: 297mm;
+
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    background: var(--paper-bg);
+}
+
+
+/* TOP HANGING ICONS */
+
+.cover-top-icons {
+    position: absolute;
+
+    top: 10mm;
+    left: 0;
+
+    width: 100%;
+}
+
+
+/* MAIN TITLE AREA */
+
+.cover-content {
+    position: absolute;
+
+    top: 125mm;
+    left: 0;
+
+    width: 100%;
+
+    text-align: center;
+}
+
+
+/* WELCOME */
+
+.cover-welcome {
+    margin: 0 0 4mm;
+
+    font-family: "Your Cursive Font", cursive;
+
+    font-size: 17mm;
+    line-height: 1;
+
+    color: var(--ink);
+}
+
+
+/* LITTLE ONE */
+
+.cover-little-one {
+    margin: 0 0 4mm;
+
+    font-size: 8mm;
+
+    font-weight: 500;
+
+    letter-spacing: 2mm;
+
+    color: var(--ink);
+}
+
+
+/* BABY BOOK */
+
+.cover-subtitle {
+    margin: 0;
+
+    font-family: "Your Cursive Font", cursive;
+
+    font-size: 8mm;
+
+    color: var(--ink);
+}
+
+
+/* =========================================================
+   4. UNIVERSAL A4 PAGE — tightened padding
+========================================================= */
+
+.book-page {
+    width: 210mm !important;
+    min-width: 210mm !important;
+
+    height: 297mm !important;
+    min-height: 297mm !important;
+
+    position: relative;
+    overflow: hidden;
+
+    box-sizing: border-box;
+
+    background: var(--paper-bg) !important;
+
+    color: var(--ink) !important;
+
+    margin: 0 auto;
+
+    padding: 12mm 10mm 10mm !important;
+
+    border: none !important;
+
+    box-shadow: var(--shadow-page);
+}
+
+
+/* =========================================================
+   5. PRINT-SAFE INNER FRAME — pulled in closer to the edge
+========================================================= */
+
+.book-page::before {
+    content: '';
+    position: absolute;
+    top: 5mm;
+    right: 5mm;
+    bottom: 5mm;
+    left: 5mm;
+    border: 1.5px solid var(--gold);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.book-page::after {
+    content: "";
+    position: absolute;
+    top: 3mm;
+    right: 3mm;
+    bottom: 3mm;
+    left: 3mm;
+    border: 1px solid var(--ink-soft);
+    pointer-events: none;
+    z-index: 9999;
+}
+
+
+/* =========================================================
+   19. PRINT SETTINGS
+========================================================= */
+
+@media print {
+
+    @page {
+        size: A4 portrait;
+        margin: 0;
+    }
+
+    html,
+    body {
+        width: 210mm !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: var(--paper-bg) !important;
+    }
+
+    .page-shell {
+        width: 210mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .book-container {
+        width: 210mm !important;
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        gap: 0 !important;
+    }
+
+    /* Every page prints as exactly one A4 page */
+    .book-page,
+    .cover-page,
+    .inner-page,
+    .page-60,
+    .teeth-chart-page,
+    .memories-first-year-page,
+    .baby-memory-notes-page {
+        width: 210mm !important;
+        min-width: 210mm !important;
+        height: 297mm !important;
+        min-height: 297mm !important;
+        margin: 0 !important;
+        padding: 12mm 10mm 10mm !important;
+        box-shadow: none !important;
+        background: var(--paper-bg) !important;
+        overflow: hidden !important;
+        break-after: page;
+        page-break-after: always;
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    .book-page:last-child {
+        break-after: auto !important;
+        page-break-after: auto !important;
+    }
+
+    .book-page {
+        border: none !important;
+    }
+
+    .book-page::before {
+        display: block !important;
+        top: 5mm !important;
+        right: 5mm !important;
+        bottom: 5mm !important;
+        left: 5mm !important;
+        border: 1.5px solid var(--gold) !important;
+    }
+
+    .book-page::after,
+    .cover-page::after {
+        display: block !important;
+        top: 3mm !important;
+        right: 3mm !important;
+        bottom: 3mm !important;
+        left: 3mm !important;
+        border: 1px solid var(--ink-soft) !important;
+    }
+
+    .cover-page {
+        border: none !important;
+    }
+
+    .do-not-print,
+    .image-controls,
+    .upload-placeholder,
+    .file-input {
+        display: none !important;
+    }
+
+    .book-page,
+    .book-page * {
+        color: var(--ink) !important;
+    }
+
+    .image-preview,
+    .smile-image-preview {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    img,
+    svg {
+        max-width: 100%;
+    }
+}
